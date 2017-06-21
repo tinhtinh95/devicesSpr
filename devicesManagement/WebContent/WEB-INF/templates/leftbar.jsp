@@ -33,7 +33,7 @@
 				<li>
                     <a href="${pageContext.request.contextPath}/cat"><span class="fa fa-desktop"></span> <span class="xn-text">Category</span></a>                        
                 </li>
-				<li><a href="${pageContext.request.contextPath}/equipment"><span class="fa fa-align-justify"></span> Equipment</a></li>
+				<li><a href="${pageContext.request.contextPath}/device"><span class="fa fa-align-justify"></span> Device</a></li>
 				<li><a href="${pageContext.request.contextPath}/account"><span class="fa fa-user"></span> Account</a></li>
 				<li><a href="${pageContext.request.contextPath}/contact"><span class="fa fa-file-text"></span> Contact</a></li>
 				 <li><a href="${pageContext.request.contextPath}/history"><span class="fa fa-calendar"></span> History</a></li>

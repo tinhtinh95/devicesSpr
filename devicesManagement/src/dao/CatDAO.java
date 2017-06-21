@@ -26,29 +26,30 @@ public class CatDAO {
 		return jdbcTemplate.update(sql, new Object[]{objItem.getName()});
 	}
 
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	public Cat getItem(int id) {
-//		String sql="select * from cat where id_cat=?";
-//		return jdbcTemplate.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper(Cat.class));
-//	}
-//
-//	public int editItem(Cat objItem) {
-//		String sql="update cat set name=? where id_cat=?";
-//		return jdbcTemplate.update(sql, new Object[]{objItem.getName(),objItem.getId_cat()});
-//	}
-//	
-//	public int delItem(int id) {
-//		String sql="delete from cat where id_cat=?";
-//		return jdbcTemplate.update(sql, new Object[]{id});
-//	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Cat checkCat(String name) {
+		String sql="select name from Category where name= ?";
+		try{
+			return (Cat) jdbcTemplate.queryForObject(sql,new Object[]{name},new BeanPropertyRowMapper(Cat.class));
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Cat getItem(int id) {
+		String sql="select * from Category where id=?";
+		return (Cat) jdbcTemplate.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper(Cat.class));
+	}
 
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	public Cat checkCat(String name) {
-//		String sql="select * from Category where name= ?";
-//		try{
-//			return jdbcTemplate.queryForObject(sql, new Object[]{name},new BeanPropertyRowMapper(Cat.class));
-//		}catch(Exception e){
-//			return null;
-//		}
-//	}
+	public int editItem(Cat objItem) {
+		String sql="update Category set name=? where id=?";
+		return jdbcTemplate.update(sql, new Object[]{objItem.getName(),objItem.getId()});
+	}
+	
+	public int delItem(int id) {
+		String sql="delete from Category where id=?";
+		return jdbcTemplate.update(sql, new Object[]{id});
+	}
+
 }

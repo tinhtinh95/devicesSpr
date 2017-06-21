@@ -29,6 +29,10 @@
    <definition name="cat.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/cat/add.jsp" />
   </definition>
+  
+  <definition name="cat.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/edit.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Contact -->
@@ -51,15 +55,18 @@
   </definition>
   <!--  -->
   
-   <!-- Equipment -->
-  <definition name="equipment.index" extends="devices.template">
-    <put-attribute name="content" value="/WEB-INF/jsp/equipment/index.jsp" />
+   <!-- Device -->
+  <definition name="device.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/index.jsp" />
   </definition>
   
-  <definition name="equipment.add" extends="devices.template">
-    <put-attribute name="content" value="/WEB-INF/jsp/equipment/add.jsp" />
+  <definition name="device.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/add.jsp" />
   </definition>
   
+  <definition name="device.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/detail.jsp" />
+  </definition>
   <!--  --> 
   
   <!-- History -->
