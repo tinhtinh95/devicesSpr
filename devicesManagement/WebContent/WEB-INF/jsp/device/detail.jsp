@@ -52,9 +52,10 @@
                                     </ul>                                
                                 </div>
                                 <div class="panel-body">
-                                    <table class="table datatable">
+                                    <table class="table datatable" style="text-align:center">
                                         <thead>
                                             <tr>
+                                                <th>Name</th>
                                                 <th>Seri Number</th>
                                                 <th>ID Account</th>
                                                 <th>Username</th>
@@ -66,18 +67,18 @@
                                         <tbody>
                                         <c:forEach var="objItem" items="${listItemDetails}">
                                             <tr>
+                                               <td>${objItem.name }</td>
                                                 <td>${objItem.seri_number }</td>
                                                 <td>${objItem.idAccount}</td>
                                                 <td>${objItem.username}</td>
-                                                <td>${objItem.isnew}</td>
+                                                <c:if test="${objItem.isnew eq 1}">
+                                                	<td><span class="label label-info">New</span></td>
+                                                </c:if>
                                                 <td>${objItem.status}</td>
                                                 <td>
-                                                    <img style="width:60px;height:60px" alt="${objItem.picture }" src="${pageContext.request.contextPath }/files/${objItem.picture }" />
-                                                </td>
-                                                <td>
-                                                        <a href="${pageContext.request.contextPath }/device/edit/${objItem.seri_number}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                        <a href="${pageContext.request.contextPath }/device/del/${objItem.seri_number}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
-                                                    </td>
+                                                    <a href="${pageContext.request.contextPath }/device/edit/${objItem.seri_number}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
+                                                    <a href="${pageContext.request.contextPath }/device/del/${objItem.seri_number}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times">Del</span></a>
+                                                 </td>
                                             </tr>
                                           </c:forEach>  
                                             

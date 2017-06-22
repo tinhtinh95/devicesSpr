@@ -68,7 +68,7 @@
                                         <tbody>
                                         <c:forEach var="objItem" items="${listItems}">
                                             <tr>
-                                                <td><a href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.id }</a></td>
+                                                <td><a href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.getId()}</a></td>
                                                 <td><a href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.name}</a></td>
                                                 <td>${objItem.cname}</td>
                                                 <td>${objItem.made_in}</td>

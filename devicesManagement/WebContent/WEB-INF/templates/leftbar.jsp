@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@include file="/templates/taglib.jsp" %>
 
 	<!-- START PAGE SIDEBAR -->
 	<div class="page-sidebar">
 			<!-- START X-NAVIGATION -->
 			<ul class="x-navigation">
-				<li class="xn-logo"><a href="index-2.html">Joli Admin</a> <a
+				<li class="xn-logo"><a href="#"></a> <a
 					href="#" class="x-navigation-control"></a></li>
 				<li class="xn-profile"><a href="#" class="profile-mini"> <img
 						src="${pageContext.request.contextPath}/templates/assets/images/users/avatar.jpg"
@@ -19,8 +19,8 @@
 								alt="John Doe" />
 						</div>
 						<div class="profile-data">
-							<div class="profile-data-name">John Doe</div>
-							<div class="profile-data-title">Web Developer/Designer</div>
+							<div class="profile-data-name">${username}</div>
+							<div class="profile-data-title">${principal.authorities}</div>
 						</div>
 						<div class="profile-controls">
 							<a href="pages-profile.html" class="profile-control-left"><span

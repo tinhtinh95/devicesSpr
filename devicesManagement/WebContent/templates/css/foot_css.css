@@ -2,7 +2,11 @@
 	height: auto;
 	background-color: #333;
 	width: 100%;
-	position: absolute;  right: 0;  bottom: 0;  left: 0;  padding: 1rem;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
 }
 
 .footer h3, h5 {
@@ -47,7 +51,7 @@
 	font-size: 14px;
 }
 
-.color_cyan{
+.color_cyan {
 	color: #72F0FF;
 }
 

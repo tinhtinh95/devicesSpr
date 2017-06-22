@@ -10,17 +10,12 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 
 	<http use-expressions="true">
 		<csrf disabled="true"/>
-
-        
-        
-        <!-- <intercept-url pattern="/admin/cat/**" access="hasAnyRole('ROLE_MOD', 'ROLE_ADMIN')" />
-        <intercept-url pattern="/admin/news/**" access="hasAnyRole('ROLE_MOD', 'ROLE_ADMIN')" />
-        
-        <intercept-url pattern="/admin" access="hasAnyRole('ROLE_MOD', 'ROLE_ADMIN', 'ROLE_USER')" />
-        
-        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
-        <intercept-url pattern="/admin/**" access="hasRole('ROLE_admin')" />
-        <intercept-url pattern="/hello" access="hasAnyRole('ROLE_admin','ROLE_user')" />
+		
+        <intercept-url pattern="/team/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/account/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/position/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/cat/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll()" />
  
         <access-denied-handler error-page="/403" />
@@ -39,8 +34,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <authentication-manager>
     <authentication-provider>
             <user-service>
-                <user name="Tom1" password="123456" authorities="ROLE_admin" />
-                <user name="admin1" password="12345" authorities="ROLE_admin ROLE_user" />
+                <user name="Tom1" password="123456" authorities="admin" />
+                <user name="admin1" password="12345" authorities="user" />
             </user-service>
         </authentication-provider>
     
@@ -48,9 +43,9 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
         <authentication-provider>
            	<password-encoder hash="md5" />
             
-            <jdbc-user-service data-source-ref="myDataSource"
-                users-by-username-query="select username,password from Account where username=?"
-                authorities-by-username-query="select username, concat('ROLE_',role) role from Account where username=?" />
+            <jdbc-user-service data-source-ref="myDataSource" 
+                users-by-username-query="select username,password,enabled from Account where username=?"
+                authorities-by-username-query="select username,concat('ROLE_',role) role from Account where username=?" />
         </authentication-provider>
     </authentication-manager>
 

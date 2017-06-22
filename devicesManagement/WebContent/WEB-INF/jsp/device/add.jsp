@@ -1,4 +1,4 @@
-
+<%@include file="/templates/taglib.jsp" %>
 
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
@@ -41,16 +41,26 @@
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
-                                <form class="form-horizontal" role="form">
+                                <form class="form-horizontal" action="${pageContext.request.contextPath}/device/add" method="post" enctype="multipart-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Id Equipment</label>
+                                        <label class="col-md-3 col-xs-12 control-label">ID Equipment</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input name="id" type="text" class="form-control"/>
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                        <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Seri Number</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <input name="seri_number" type="text" class="form-control"/>
+                                            </div>                                            
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -58,9 +68,9 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input name="name" type="text" class="form-control"/>
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -68,22 +78,21 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input name="made_in" type="text" class="form-control"/>
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                       <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Id Account</label>
+                                        <label class="col-md-3 col-xs-12 control-label">Account</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
+                                           <select name="idAccount" class="form-control select">
+	                                            <option value="-1">--Choose account--</option>
+	                                            <c:forEach items="${listAccounts }" var="objAccount">
+	                                                <option value="${objAccount.id }">${objAccount.username }</option>
+	                                            </c:forEach>
                                             </select>
-                                            <span class="help-block">Select box example</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                       <div class="form-group">
@@ -91,69 +100,61 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input name="price" type="text" class="form-control"/>
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="col-md-6">                   
                                       <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Waranty</label>
+                                        <label class="col-md-3 col-xs-12 control-label">Warranty</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input name="warranty" type="text" class="form-control"/>
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
-                                    </div>
-                                    <div class="col-md-6">                                                                                                    
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Is New</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
-                                            <span class="help-block">Select box example</span>
+                                            <input type="radio" name="isnew" value="1"> New
+  											<input type="radio" name="isnew" value="0" style="margin-left:30px"> Old
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                      <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Status</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
+                                            <select name="status" class="form-control select">
+                                                <option value="-1">--Choose status--</option>
+                                                <option value="inuse">In use</option>
+                                                <option value="break">Break</option>
                                             </select>
-                                            <span class="help-block">Select box example</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Name category</label>
+                                        <label class="col-md-3 col-xs-12 control-label">Category</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
+                                            <select name="idCat" class="form-control select">
+	                                            <option value="-1">--Choose category--</option>
+	                                            <c:forEach items="${listCats }" var="objCat">
+	                                                <option value="${objCat.id }">${objCat.name }</option>
+	                                            </c:forEach>
                                             </select>
-                                            <span class="help-block">Select box example</span>
+                                            <span class="help-block"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Picture</label>
                                         <div class="col-md-6 col-xs-12">                                                                                                                                        
-                                            <input type="file" class="fileinput btn-primary" name="filename" id="filename" title="Browse file"/>
-                                            <span class="help-block">Input type file</span>
+                                            <input type="file" class="fileinput btn-primary" name="fileName" id="filename" title="Browse file"/>
+                                            <span class="help-block"></span>
                                         </div>
-                                        </div>
+                                       </div>
                                     	
                                       </div>         
                                     <div class="panel-footer">
