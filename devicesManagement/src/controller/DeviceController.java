@@ -52,7 +52,7 @@ public class DeviceController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public String add(@ModelAttribute("objItem") Devices objItem,@RequestParam("fileName") CommonsMultipartFile commonsMultipartFile,HttpServletRequest request){
+	public String add(@ModelAttribute("objItem") Devices objItem,@RequestParam("filename") CommonsMultipartFile commonsMultipartFile,HttpServletRequest request){
 		String filename=commonsMultipartFile.getOriginalFilename();
 		if(!filename.isEmpty()){
 		String filePath=request.getServletContext().getRealPath("files");

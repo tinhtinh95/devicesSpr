@@ -1,5 +1,5 @@
 <%@include file="/templates/taglib.jsp" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
 
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
-                                <form class="form-horizontal" action="${pageContext.request.contextPath}/device/add" method="post" enctype="multipart-data">
+                                <form class="form-horizontal" action="${pageContext.request.contextPath}/device/add" method="post" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">ID Equipment</label>
@@ -151,7 +151,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Picture</label>
                                         <div class="col-md-6 col-xs-12">                                                                                                                                        
-                                            <input type="file" class="fileinput btn-primary" name="fileName" id="filename" title="Browse file"/>
+                                            <input type="file" class="fileinput btn-primary" name="filename" id="filename" title="Browse file"/>
                                             <span class="help-block"></span>
                                         </div>
                                        </div>
