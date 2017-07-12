@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.CatDAO;
+import dao.DeviceDAO;
 import entities.Cat;
 
 @Controller
@@ -20,11 +21,22 @@ public class CatController {
 	
 	@Autowired
 	private CatDAO mainDAO;
+	
+	@Autowired
+	private DeviceDAO deviceDAO;
 
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String home(ModelMap modelMap){
 		modelMap.addAttribute("listItems", mainDAO.getItems());
 		return "cat.index";
+	}
+	
+	@RequestMapping(value="detail/{id}", method=RequestMethod.GET)
+	public String detailbycat(ModelMap modelMap,@PathVariable("id") int id){
+		modelMap.addAttribute("listItemsByIdCat", deviceDAO.getItemsByIdCat(id));
+		modelMap.addAttribute("deviceDAO", deviceDAO);
+		modelMap.addAttribute("objCat", mainDAO.getItem(id));
+		return "cat.detail";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)

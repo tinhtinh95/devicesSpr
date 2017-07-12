@@ -6,7 +6,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 		
-<!-- Cấu hình login, logout, phân quyền người dùng -->
 
 	<http use-expressions="true">
 		<csrf disabled="true"/>
@@ -14,6 +13,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
         <intercept-url pattern="/team/**" access="hasAnyRole('ROLE_ADMIN')" />
         <intercept-url pattern="/account/**" access="hasAnyRole('ROLE_ADMIN')" />
         <intercept-url pattern="/position/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/device/**" access="hasAnyRole('ROLE_ADMIN')" />
         <intercept-url pattern="/cat/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll()" />

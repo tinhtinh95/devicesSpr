@@ -10,6 +10,7 @@ public class HistoryController {
 
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String home(){
+		
 		return "history.index";
 	}
 	

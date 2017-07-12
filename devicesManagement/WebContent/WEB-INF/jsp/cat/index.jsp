@@ -48,6 +48,15 @@
                                     <c:if test="${param['msg'] eq 'add' }">
                                     <div style="color:blue; font-size:20px;text-align:center">Add Success</div>
                                 </c:if>
+                                <c:if test="${param['msg'] eq 'edit' }">
+                                    <div style="color:blue; font-size:20px;text-align:center">Edit Success</div>
+                                </c:if>
+                                <c:if test="${param['msg'] eq 'del' }">
+                                    <div style="color:blue; font-size:20px;text-align:center">Del Success</div>
+                                </c:if>
+                                <c:if test="${param['msg'] eq 'err' }">
+                                    <div style="color:blue; font-size:20px;text-align:center">Error.Try Again</div>
+                                </c:if>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table datatable">
@@ -55,6 +64,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
+                                                <td>Detail</td>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -63,6 +73,10 @@
                                             <tr>
                                                 <td>${objItem.id }</td>
                                                 <td>${objItem.name }</td>
+                                                <td><a
+											href="${pageContext.request.contextPath }/cat/detail/${objItem.id}"
+											style="background-color: #A9F5F2"
+											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
                                                 <td>
                                                         <a href="${pageContext.request.contextPath }/cat/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
                                                         <a href="${pageContext.request.contextPath }/cat/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>

@@ -15,19 +15,20 @@
               },
             });
           }); */
-        
-var mikExp = /[$\\@\!\\\#%\^\&\*\(\)\[\]\+\_\{\}\`\~\=\|]/;
-function check(val) {
-var strPass = val.value;
-var strLength = strPass.length;
-var lchar = val.value.charAt((strLength) - 1);
-if(lchar.search(mikExp) != -1) {
-var tst = val.value.substring(0, (strLength) - 1);
-val.value = tst;
-   }
-}
-
 </script>
+<script type="text/javascript">
+function check(str) {
+	  var mikExp = /[$\\@\!\\\#%\^\&\*\(\)\[\]\+\_\{\}\`\~\=\|]/;
+	  for (var i = 0; i < str.length; i++) {
+	    var temp = str.substring(i, i + 1);
+	    if (temp.search(mikExp) != -1) {
+	      return str.substring(0, i);
+	    }
+	  }
+	  return str;
+	}
+</script>
+
 
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
@@ -77,7 +78,7 @@ val.value = tst;
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input onKeyUp="return check(this)" type="text" name="name" class="form-control"/>
+                                                <input onkeyup="this.value=check(this.value);"  type="text" name="name" class="form-control"/>
                                             </div>                                         
                                             <span class="help-block">
                                             <form:errors path="objItem.name" style="color:red"></form:errors>

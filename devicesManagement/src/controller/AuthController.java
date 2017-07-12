@@ -4,7 +4,6 @@ import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,23 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AuthController {
 	
 	
-	
-	@ModelAttribute
-	public void addCommons(ModelMap modelMap,Principal principal){
-		if(principal!=null){
-			modelMap.addAttribute("username",principal.getName());
-			System.out.println(principal.toString());
-			System.out.println(principal.getName());
-		}
-		
-	}
-	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(Principal principal,ModelMap modelMap){
 		if(principal!=null){
-			modelMap.addAttribute("username",principal.getName());
-//			System.out.println(principal.toString());
-//			System.out.println(principal.getName());
 			return "redirect:/home";
 		}
 		return "auth/login";

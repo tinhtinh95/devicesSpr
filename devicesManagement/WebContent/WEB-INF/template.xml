@@ -19,6 +19,9 @@
   <definition name="account.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/account/add.jsp" />
   </definition>
+  <definition name="account.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/account/detail.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Cat -->
@@ -32,6 +35,10 @@
   
   <definition name="cat.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/cat/edit.jsp" />
+  </definition>
+  
+  <definition name="cat.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/detailbycat.jsp" />
   </definition>
   <!--  -->
   
@@ -67,6 +74,18 @@
   <definition name="device.detail" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/device/detail.jsp" />
   </definition>
+  
+  <definition name="device.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/edit.jsp" />
+  </definition>
+  
+  <definition name="device.detail.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/add1.jsp" />
+  </definition>
+  
+   <definition name="device.detail.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/edit1.jsp" />
+  </definition>
   <!--  --> 
   
   <!-- History -->
@@ -93,6 +112,9 @@
    <definition name="position.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/add.jsp" />
   </definition>
+  <definition name="position.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/edit.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Team -->
@@ -102,6 +124,10 @@
   
    <definition name="team.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/add.jsp" />
+  </definition>
+   <definition name="team.edit" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
   </definition>
   <!--  -->
   
