@@ -95,7 +95,7 @@ public class AccountDAO {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Account getItemByEmail(String email) {
-		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where username =?";
+		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where email =?";
 		try{
 			return (Account) jdbcTemplate.queryForObject(sql, new Object[] { email },
 					new BeanPropertyRowMapper(Account.class));

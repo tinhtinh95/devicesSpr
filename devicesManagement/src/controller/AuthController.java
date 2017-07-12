@@ -65,23 +65,25 @@ public class AuthController {
 	        // sends the e-mail
 	        
 	        Account objAC=accountDAO.getItemByEmail(email);
-	        System.out.println(objAC.toString());
-	        return "auth/login";
 //	        if(objAC!=null){
-//	        	System.out.println("null");
-//	        	return "redirect:/forgetpass?msg=wrong";
-//	        }else{
-//	        	try{
-//		        	 mailSender.send(email1);
-//		        	 System.out.println("success");
-//		        	 modelMap.addAttribute("new_pass", 1);
-//		        	 return "auth/login";
-//		        	 
-//		        	 // forwards to the view named "Result"
-//		        }catch(Exception e){
-//		        	System.out.println("Error");
-//		        	return "auth/login";
-//		        }
+//	        	System.out.println(objAC.toString());
 //	        }
+//	        return "auth/login";
+	        if(objAC==null){
+	        	System.out.println("null");
+	        	return "redirect:/forgetpass?msg=wrong";
+	        }else{
+	        	try{
+		        	 mailSender.send(email1);
+		        	 System.out.println("success");
+		        	 modelMap.addAttribute("new_pass", 1);
+		        	 return "auth/login";
+		        	 
+		        	 // forwards to the view named "Result"
+		        }catch(Exception e){
+		        	System.out.println("Error");
+		        	return "auth/login";
+		        }
+	        }
 	}
 }
