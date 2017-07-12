@@ -60,6 +60,9 @@
   <definition name="employee.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/employee/add.jsp" />
   </definition>
+  <definition name="employee.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/employee/edit.jsp" />
+  </definition>
   <!--  -->
   
    <!-- Device -->

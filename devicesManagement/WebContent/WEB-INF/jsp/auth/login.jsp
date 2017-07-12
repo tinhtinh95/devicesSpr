@@ -18,15 +18,13 @@
   <body>
   <center>
   <div class="container">
+    <h2>Welcome to DevicesManagement System</h2>
     <h1>Login</h1>
-    <%-- <%
-        if(request.getParameter("msg")!=null){
-        	out.print("<div style=\"width:400px;height:50px\" class=\"alert alert-danger\" role=\"alert\">Wrong username or password</div>");
-        }
-    
-    %> --%>
     <c:if test="${param['error'] eq 'loginErr'}"> 
    <div style="width:400px;height:50px" class="alert alert-danger" role="alert">Wrong username or password</div>
+</c:if>
+<c:if test="${new_pass eq 1}"> 
+   <div style="width:700px;height:50px" class="alert alert-info" role="alert">A new password be sent for you. Please check your email and try again.</div>
 </c:if>
     <form id="loginform" action="${pageContext.request.contextPath}/login" name="loginform" method="post">
       <div class="form-group">
@@ -43,6 +41,7 @@
     </form>
   </div>
   </center>
+  <div><a href="${pageContext.request.contextPath}/forgetpass" style="text-align: center;"> Forgot password </a></div>
   </body>
   <script type="text/javascript">
               $(document).ready(function(){

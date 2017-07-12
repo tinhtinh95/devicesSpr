@@ -19,6 +19,12 @@ label{
 	font-size: 20px;
 	margin-left: 0px;
 }
+h2{
+	color: #AE4B2D;
+	margin-bottom: 50px;
+    font-family: Arial;
+	font-weight: bold;
+}
 h1{
 	font-size: 100px;
 	color: white;
