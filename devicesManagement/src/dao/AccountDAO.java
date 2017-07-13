@@ -94,13 +94,29 @@ public class AccountDAO {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Account getItemByEmail(String email) {
-		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where email =?";
+	public Employee getItemByEmail(String email) {
+		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where Employee.email =? ";
 		try{
-			return (Account) jdbcTemplate.queryForObject(sql, new Object[] { email },
+			return (Employee) jdbcTemplate.queryForObject(sql, new Object[] { email },
+					new BeanPropertyRowMapper(Employee.class));
+		}catch(Exception e){
+			return null;
+		}
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Account getItemByIDEmployee(String id) {
+		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where Employee.id=?";
+		try{
+			return (Account) jdbcTemplate.queryForObject(sql, new Object[] { id },
 					new BeanPropertyRowMapper(Account.class));
 		}catch(Exception e){
 			return null;
 		}
 	}
+	
+	public int updatePass(String new_pass,String id_Employee) {
+		String sql = "update Account set password=? where id_Employee=?";
+		return jdbcTemplate.update(sql,
+				new Object[] { StringUtils.md5(new_pass),id_Employee});
+}
 }

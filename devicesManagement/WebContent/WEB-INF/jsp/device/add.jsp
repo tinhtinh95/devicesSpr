@@ -132,6 +132,7 @@ function format_curency(a) {
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
+							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form onsubmit="return check()" name="frm" class="form-horizontal" action="${pageContext.request.contextPath}/device/add" method="post" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -263,7 +264,7 @@ function format_curency(a) {
                                     <button type="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
                                 </form>                                
-                            </div>
+                            </div></div></div>
                         </div>
                          
                     </div>                                

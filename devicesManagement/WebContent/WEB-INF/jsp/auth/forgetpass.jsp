@@ -17,7 +17,7 @@
   </head>
   <body>
   <center>
-  <div class="container">
+  <div class="container" style="border: 1px solid; width:450px;border-radius: 8px;background-color: #92C8FD;padding: 20px">
     <h2>Here, You can get a new password</h2>
     <c:if test="${param['msg'] eq 'wrong'}"> 
    <div style="width:400px;height:50px" class="alert alert-danger" role="alert">Email is not exists in this system</div>
@@ -44,11 +44,11 @@
 	  $("#result").text("");
 	  var email = $("#email").val();
 	  if (validateEmail(email)) {
-	    $("#result").text(email + " is valid :)");
+	    $("#result").text(email + " is valid");
 	    $("#result").css("color", "green");
 	  } else {
 		  if(email.length!=0){
-			  $("#result").text(email + " is not valid :(");
+			  $("#result").text(email + " is not valid");
 			    $("#result").css("color", "red");
 		  }
 	  }
@@ -58,7 +58,7 @@
 	  $("#result").text("");
 	  var email = $("#email").val();
 	  if (validateEmail(email)) {
-	    $("#result").text(email + " is valid :)");
+	    $("#result").text(email + " is valid");
 	    $("#result").css("color", "green");
 	    return true;
 	  } else {
@@ -79,13 +79,11 @@
               rules:{
                 email:{
                   required: true,
-                  maxlength: 30,
                 },
               },
               messages:{
                 email:{
-                  required: "<span style='color:red'>Username is required</span>",
-                  maxlength: "<span style='color:red'>Username maxlength: 30!</span>",
+                  required: "<span style='color:red'>Email is required</span>",
                 },
               },
             });

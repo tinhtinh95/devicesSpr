@@ -40,12 +40,12 @@
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
-					
-					
-					 <%-- <c:if test="${objAC.role eq 'ADMIN' }"> --%>
+
+
+						 <c:if test="${objAC.role eq 'ADMIN' }"> 
 						<a href="${pageContext.request.contextPath }/device/add"
 							type="button" class="btn btn-info">Add</a>
-							<%-- </c:if>  --%>
+						 </c:if>  
 						<c:if test="${param['msg'] eq 'add' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Add
 								Success</div>
@@ -63,7 +63,7 @@
 								Again</div>
 						</c:if>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
 								<tr>
@@ -99,15 +99,19 @@
 											href="${pageContext.request.contextPath }/device/detail/${objItem.id}"
 											style="background-color: #A9F5F2"
 											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
-									    <td width="15%">
-                                           <a href="${pageContext.request.contextPath }/device/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
-                                           <a href="${pageContext.request.contextPath }/device/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want to delete all device belong to this id?')"><span class="fa fa-times">Del</span></a>
-                                        </td>
+										<td width="15%"><a
+											href="${pageContext.request.contextPath }/device/edit/${objItem.id}"
+											class="btn btn-default btn-rounded btn-sm"><span
+												class="fa fa-pencil"></span></a> <a
+											href="${pageContext.request.contextPath }/device/del/${objItem.id}"
+											class="btn btn-danger btn-rounded btn-sm"
+											onClick="return confirm('Do you want to delete all device belong to this id?')"><span
+												class="fa fa-times"></span></a></td>
 									</tr>
 								</c:forEach>
 
 							</tbody>
-						</table>
+						</table></div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->
@@ -117,3 +121,5 @@
 			</div>
 
 		</div>
+
+		

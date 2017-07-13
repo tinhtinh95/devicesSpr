@@ -58,7 +58,7 @@
                                     <div style="color:blue; font-size:20px;text-align:center">Error.Try Again</div>
                                 </c:if>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" id="body"><div class="table-responsive">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
@@ -84,7 +84,7 @@
                                             </tr>
                                        </c:forEach>
                                         </tbody>
-                                    </table>
+                                    </table></div>
                                 </div>
                             </div>
                             <!-- END DEFAULT DATATABLE -->

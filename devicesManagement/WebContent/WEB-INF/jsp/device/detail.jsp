@@ -22,23 +22,26 @@
 			<!-- END X-NAVIGATION VERTICAL -->
 <script type="text/javascript">
 function Change(idAccount,seri) {
-	/* alert(idAccount);
-	alert(seri); */
-	 $.ajax({
-		url: '${pageContext.request.contextPath }/device/change',
-		type: 'Post',
-		cache: false,
-		data:{
-			aidAccount:idAccount, aseri:seri
-		},
-		success:function(data){
-			$('#change-'+seri).html(data);
-			alert("Ok");
-		},
-		error:function(){
-			alert("Error");
-		}
-	}); 
+	var result = confirm("Do you want to change it?");
+	if(result){
+		$.ajax({
+			url: '${pageContext.request.contextPath }/device/change',
+			type: 'Post',
+			cache: false,
+			data:{
+				aidAccount:idAccount, aseri:seri
+			},
+			success:function(data){
+				$('#change-'+seri).html(data);
+				alert("You did change it");
+			},
+			error:function(){
+				alert("Error");
+			}
+		});
+	}else{
+		alert("It haven't yet changed");
+	}
 	}
 </script>
 			 
@@ -78,8 +81,8 @@ function Change(idAccount,seri) {
 								Again</div>
 						</c:if>
 					</div>
-					<div class="panel-body">
-                                    <table class="table datatable" style="text-align:center">
+					<div class="panel-body" id="body"><div class="table-responsive">
+                                    <table id="example" class="table datatable" style="text-align:center">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -104,7 +107,7 @@ function Change(idAccount,seri) {
                                                 <%-- <td>
                                                     <c:if test="${objItem.idAccount ne -1}">${objItem.idAccount}</c:if>
                                                 </td> --%>
-                                                <td id="change${objItem.seri_number }">
+                                                <td  id="change${objItem.seri_number }">
                                                 	<select onchange="return Change(this.value,'${objItem.seri_number}')" name="idAccount" class="form-control select">
 		                                            <c:forEach items="${listAccounts }" var="objAccount">
 		                                            <c:choose>
@@ -131,14 +134,14 @@ function Change(idAccount,seri) {
                                                 <td>${objItem.warranty}</td>
                                                 <td width="15%">${date_start}</td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath }/device/detail/edit/${objItem.seri_number}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
-                                                    <a href="${pageContext.request.contextPath }/device/detail/del/${objItem.seri_number}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times">Del</span></a>
+                                                    <a href="${pageContext.request.contextPath }/device/detail/edit/${objItem.seri_number}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
+                                                    <a href="${pageContext.request.contextPath }/device/detail/del/${objItem.seri_number}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
                                                  </td>
                                             </tr>
                                           </c:forEach>  
                                             
                                         </tbody>
-                                    </table>
+                                    </table></div>
                                 </div>
                             </div>
                             <!-- END DEFAULT DATATABLE -->

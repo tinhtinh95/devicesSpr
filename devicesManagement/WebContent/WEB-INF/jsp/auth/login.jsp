@@ -15,16 +15,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
     
   </head>
-  <body>
+  <body >
   <center>
-  <div class="container">
+  <div class="container" style="border: 1px solid; width:450px;border-radius: 8px;background-color: #92C8FD;">
     <h2>Welcome to DevicesManagement System</h2>
     <h1>Login</h1>
     <c:if test="${param['error'] eq 'loginErr'}"> 
    <div style="width:400px;height:50px" class="alert alert-danger" role="alert">Wrong username or password</div>
 </c:if>
-<c:if test="${new_pass eq 1}"> 
-   <div style="width:700px;height:50px" class="alert alert-info" role="alert">A new password be sent for you. Please check your email and try again.</div>
+<c:if test="${param['new_pass'] eq 'success'}"> 
+   <div style="width:400px;height:70px" class="alert alert-info" role="alert">A new password be sent for you. Please check your email and try again.</div>
 </c:if>
     <form id="loginform" action="${pageContext.request.contextPath}/login" name="loginform" method="post">
       <div class="form-group">
@@ -37,11 +37,12 @@
         <input type="password" class="form-control" placeholder="Your password" name="password">
       </div>
       
-      <button name="submit" type="submit" class="btn btn-login">Login</button>
+      <button name="submit" type="submit" class="btn btn-login">Login</button></br>
+      <div style="margin:30px"><a href="${pageContext.request.contextPath}/forgetpass" style="text-decoration: underline;"> Forget password </a></div>
+      <div style="margin-bottom:30px;color:black">&copy;  Copyright ENCLAVE</div>
     </form>
   </div>
   </center>
-  <div><a href="${pageContext.request.contextPath}/forgetpass" style="text-align: center;"> Forgot password </a></div>
   </body>
   <script type="text/javascript">
               $(document).ready(function(){

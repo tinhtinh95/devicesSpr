@@ -71,6 +71,7 @@ function check(str) {
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
+							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form id="frm" class="form-horizontal" action="" method="post">
                                     <div class="col-md-12">
                                     <div class="form-group">
@@ -95,7 +96,7 @@ function check(str) {
                                     <button type="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
                                 </form>                                
-                            </div>
+                            </div></div></div>
                         </div>
                          
                     </div>                                

@@ -19,12 +19,12 @@
 								alt="John Doe" />
 						</div>
 						<div class="profile-data">
-							<div class="profile-data-name">${username}</div>
-							<div class="profile-data-title">${principal.authorities}</div>
+							<div class="profile-data-name">${userLogin}</div>
+							<div class="profile-data-title">${objLogin.role}</div>
 						</div>
 						<div class="profile-controls">
-							<a href="pages-profile.html" class="profile-control-left"><span
-								class="fa fa-info"></span></a> <a href="pages-messages.html"
+							<a href="${pageContext.request.contextPath}/account/edit/${objLogin.id}" class="profile-control-left"><span
+								class="fa fa-info"></span></a> <a href="${pageContext.request.contextPath}/contact"
 								class="profile-control-right"><span class="fa fa-envelope"></span></a>
 						</div>
 					</div></li>
