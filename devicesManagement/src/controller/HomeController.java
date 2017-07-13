@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.AccountDAO;
-import entities.Account;
 
 @Controller
 @RequestMapping(value="/home")
@@ -25,9 +24,7 @@ public class HomeController {
 	public void addCommons(ModelMap modelMap,Principal principal,HttpSession session){
 		if(principal!=null){
 			session.setAttribute("userLogin",principal.getName());
-			String username = principal.getName();
-			Account objAC=accountDAO.getItem(username);
-			session.setAttribute("objLogin",objAC);
+			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
 		}
 		
 	}

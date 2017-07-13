@@ -41,8 +41,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 
-
-						 <c:if test="${objAC.role eq 'ADMIN' }"> 
+						 <c:if test="${objLogin.role eq 'ADMIN' }"> 
 						<a href="${pageContext.request.contextPath }/device/add"
 							type="button" class="btn btn-info">Add</a>
 						 </c:if>  
