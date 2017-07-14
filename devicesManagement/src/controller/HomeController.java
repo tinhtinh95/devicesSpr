@@ -24,13 +24,20 @@ public class HomeController {
 	public void addCommons(ModelMap modelMap,Principal principal,HttpSession session){
 		if(principal!=null){
 			session.setAttribute("userLogin",principal.getName());
+//			session.setAttribute("objLogin",accountDAOLogin);
 			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
 		}
 		
 	}
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
-	public String home(){
-		return "home.index";
+	public String home(Principal principal,HttpSession session){
+		if(principal==null){
+			return "redirect:/login";
+		}else{
+//			session.setAttribute("userLogin",principal.getName());
+//			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
+			return "home.index";
+		}
 	}
 }

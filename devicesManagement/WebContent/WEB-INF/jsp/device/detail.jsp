@@ -44,7 +44,13 @@ function Change(idAccount,seri) {
 	}
 	}
 </script>
-			 
+			  <!-- START BREADCRUMB -->
+                <ul class="breadcrumb">
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/device">Devices</a></li>
+                    <li class="active">Detail</li>
+                </ul>
+                <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
@@ -54,33 +60,43 @@ function Change(idAccount,seri) {
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">                
-                
-                    <div class="row">
-                        <div class="col-md-12">
+					<c:choose>
+	<c:when test="${param['msg'] eq 'add'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Add
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'edit'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Update
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'del'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Delete
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'err'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
+								Again</div>
+	</c:when>
+	<c:when test="${param['msg'] eq null}">
+	</c:when>
+	<c:otherwise>
+		<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
+	</c:otherwise>
+</c:choose>
 
-                            <!-- START DEFAULT DATATABLE -->
-                            <div class="panel panel-default">
+		<div class="row">
+			<div class="col-md-12">
+
+				<!-- START DEFAULT DATATABLE -->
+				<div class="panel panel-default">
+				<c:if test="${objLogin.role eq 'ADMIN' }"> 
 					<div class="panel-heading">
+
 						<a
 							href="${pageContext.request.contextPath }/device/detail/add/${idDetail}"
 							type="button" class="btn btn-info">Add</a>
-						<c:if test="${param['msg'] eq 'add' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Add
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'edit' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Edit
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'del' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Del
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'err' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
-								Again</div>
-						</c:if>
-					</div>
+					</div></c:if> 
+					
 					<div class="panel-body" id="body"><div class="table-responsive">
                                     <table id="example" class="table datatable" style="text-align:center">
                                         <thead>
@@ -94,7 +110,8 @@ function Change(idAccount,seri) {
                                                 <th>Price</th>
                                                 <th>Warranty</th>
                                                 <th>Date</th>
-                                                <th>Action</th>
+                                                <c:if test="${objLogin.role eq 'ADMIN' }">
+                                                <th>Action</th></c:if>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -133,10 +150,12 @@ function Change(idAccount,seri) {
                                                 <td>${objItem.price}$</td>
                                                 <td>${objItem.warranty}</td>
                                                 <td width="15%">${date_start}</td>
+                                                <c:if test="${objLogin.role eq 'ADMIN' }">
                                                 <td>
                                                     <a href="${pageContext.request.contextPath }/device/detail/edit/${objItem.seri_number}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
                                                     <a href="${pageContext.request.contextPath }/device/detail/del/${objItem.seri_number}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
                                                  </td>
+                                                 </c:if>
                                             </tr>
                                           </c:forEach>  
                                             

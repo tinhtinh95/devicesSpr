@@ -92,16 +92,17 @@ function format_curency(a) {
 </script>
 
 			 <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+               <ul class="breadcrumb">
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/device">Devices</a></li>
+                    <li><a href="${pageContext.request.contextPath }/device/detail/${iddetail}">Detail</a></li>
+                    <li class="active">Add Devices</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Equipment</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Devices</h2>
                 </div>
                 <div style="text-align :center"> 
                 	<c:if test="${param['check'] eq 'err' }">

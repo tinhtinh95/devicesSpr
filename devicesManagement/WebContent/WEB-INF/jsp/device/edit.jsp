@@ -66,17 +66,17 @@ function format_curency(a) {
 	}
 </script>
 
-			 <!-- START BREADCRUMB -->
+			<!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/device">Devices</a></li>
+                    <li class="active">Edit Devices</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Edit Equipment</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Edit Devices</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -90,7 +90,7 @@ function format_curency(a) {
                                 <form onsubmit="return check()" name="frm" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">ID Equipment</label>
+                                        <label class="col-md-3 col-xs-12 control-label">ID Device</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>

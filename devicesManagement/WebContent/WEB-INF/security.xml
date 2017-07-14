@@ -11,17 +11,31 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<csrf disabled="true"/>
 		
         <intercept-url pattern="/team/**" access="hasAnyRole('ROLE_ADMIN')" />
+        
+        <intercept-url pattern="/account" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/account/edit/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/account/**" access="hasAnyRole('ROLE_ADMIN')" />
+        
+        
         <intercept-url pattern="/position/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/employee/**" access="hasAnyRole('ROLE_ADMIN')" />
+        
         <intercept-url pattern="/device" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/device/detail/add/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device/detail/edit/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device/detail/del/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device/detail/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/device/**" access="hasAnyRole('ROLE_ADMIN')" />
+        
+        <intercept-url pattern="/cat" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/cat/detail/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/cat/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll()" />
  
         <access-denied-handler error-page="/403" />
  
         <form-login login-page='/login' login-processing-url="/login"
-            default-target-url="/home" always-use-default-target="true"
+            default-target-url="/home" always-use-default-target="false"
             authentication-failure-url="/login?error=loginErr" 
             username-parameter="username"
             password-parameter="password" />
@@ -32,13 +46,13 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     </http>
     
     <authentication-manager>
-    <authentication-provider>
+    <!-- <authentication-provider>
             <user-service>
                 <user name="Tom1" password="123456" authorities="admin" />
                 <user name="admin1" password="12345" authorities="user" />
             </user-service>
         </authentication-provider>
-    
+     -->
         <!-- authentication from database -->
         <authentication-provider>
            	<password-encoder hash="md5" />

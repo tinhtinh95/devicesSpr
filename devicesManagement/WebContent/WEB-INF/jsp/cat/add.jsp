@@ -51,11 +51,11 @@ function check(str) {
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
 
-			 <!-- START BREADCRUMB -->
+			  <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/cat">Category</a></li>
+                    <li class="active">add</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 

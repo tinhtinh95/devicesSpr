@@ -81,17 +81,18 @@ function format_curency(a) {
 	}
 </script>
 
-			 <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+			  <!-- START BREADCRUMB -->
+               <ul class="breadcrumb">
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/device">Devices</a></li>
+                    <li><a href="${pageContext.request.contextPath }/device/detail/${iddetail}">Detail</a></li>
+                    <li class="active">Edit Devices</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Equipment</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Device</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
