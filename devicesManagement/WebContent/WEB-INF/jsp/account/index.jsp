@@ -104,8 +104,8 @@
 											href="${pageContext.request.contextPath}/account/detail/${objItem.id}">${objItem.username }</a></td>
 										<td>${objItem.role }</td>
 										<td>${objItem.name }</td>
-										<td><img
-											src="${pageContext.request.contextPath}/${objItem.picture }"
+										<td><img height="55px" width="55px"
+											src="${pageContext.request.contextPath}/files/${objItem.picture }"
 											alt="" /></td>
 										<td id="ajaxpicture${objItem.id}">
 										<c:choose>

@@ -77,7 +77,7 @@
 							<div class="form-group">
 								<label class="col-md-3 col-xs-12 control-label">Role</label>
 								<div class="col-md-6 col-xs-12">
-									<select class="form-control select" name="role" disabled="disabled">
+									<select class="form-control select" name="role">
 										 
                                                <c:choose>
                                                <c:when test="${objItem.role=='User' }">

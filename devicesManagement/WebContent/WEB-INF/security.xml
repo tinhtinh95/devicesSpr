@@ -11,13 +11,18 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<csrf disabled="true"/>
 		
         <intercept-url pattern="/team/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/team" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         
         <intercept-url pattern="/account" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/contact" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+         <intercept-url pattern="/history" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        
         <intercept-url pattern="/account/edit/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/account/**" access="hasAnyRole('ROLE_ADMIN')" />
         
-        
+        <intercept-url pattern="/position" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/position/**" access="hasAnyRole('ROLE_ADMIN')" />
+        
         <intercept-url pattern="/employee/**" access="hasAnyRole('ROLE_ADMIN')" />
         
         <intercept-url pattern="/device" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />

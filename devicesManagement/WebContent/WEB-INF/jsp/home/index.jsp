@@ -23,8 +23,7 @@
 
 			<!-- START BREADCRUMB -->
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li class="active">Dashboard</li>
+				<li class="active">Home</li>
 			</ul>
 			<!-- END BREADCRUMB -->
 

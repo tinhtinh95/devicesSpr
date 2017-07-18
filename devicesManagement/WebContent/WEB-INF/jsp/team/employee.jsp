@@ -31,7 +31,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Sortable Tables
+			<span class="fa fa-arrow-circle-o-left"></span> Member of team ${nameTeamDetail }
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -56,7 +56,6 @@
 									<th>Position</th>
 									<th>Date birth</th>
 									<th>Address</th>
-									<th>Team</th>
 									<th>Phone</th>
 									<th>Avatar</th>
 									
@@ -75,12 +74,6 @@
 											</c:choose></td>
 										<td>${item.getBirthday()}</td>
 										<td>${item.getAddress()}</td>
-										<td><c:choose>
-												<c:when test="${item.getNameTeam() eq null or item.getNameTeam() eq ''}">
-													<span class="label label-success">New</span>
-												</c:when>
-												<c:otherwise>${item.getNameTeam()}</c:otherwise>
-											</c:choose></td>
 										<td>${item.getPhone()}</td>
 										<td><c:choose>
 												<c:when test="${item.getPicture() eq ''}">

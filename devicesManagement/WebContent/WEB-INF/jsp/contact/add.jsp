@@ -20,7 +20,23 @@
 
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
-
+<script type="text/javascript">
+               $(document).ready(function(){
+            $("#frm").validate({
+              rules:{
+            	  description:{
+                  required: true,
+                },
+              },
+              messages:{
+            	  description:{
+            		//alert("Description is required");
+                  required: "<span style='color:red;display:block'>Description is required</span>",
+                },
+              },
+            });
+          }); 
+</script>
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
@@ -43,8 +59,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form
-						action="${pageContext.request.contextPath}/contact/add"
+					<form id="frm" action="${pageContext.request.contextPath}/contact/add"
 						method="post" class="form-horizontal" role="form">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -52,8 +67,7 @@
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
 										<span class="input-group-addon"><span
-											class="fa fa-pencil"></span></span> 
-											<input type="text"
+											class="fa fa-pencil"></span></span> <input type="text"
 											name="description" class="form-control" />
 									</div>
 									<span class="help-block">Ex: My PC was destroyed by
@@ -68,5 +82,4 @@
 					</form>
 				</div>
 			</div>
-
 		</div>

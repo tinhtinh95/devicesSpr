@@ -32,7 +32,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Category
+			<span class="fa fa-arrow-circle-o-left"></span> Contact
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -46,8 +46,21 @@
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="${pageContext.request.contextPath}/contact/add"
-							type="button" class="btn btn-info">Add</a>
+
+						<c:choose>
+							<c:when test="${objLogin.getRole() eq 'USER'}">
+
+								<a href="${pageContext.request.contextPath}/contact/add"
+									type="button" class="btn btn-info">Add</a>
+
+							</c:when>
+							<c:otherwise>
+
+								<td>${objItem.getStatus()}</td>
+
+							</c:otherwise>
+						</c:choose>
+
 						<c:if test="${param['msg'] eq 'add' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Add
 								Success</div>
@@ -61,47 +74,63 @@
 								Again</div>
 						</c:if>
 					</div>
-					<div class="panel-body" id="body"><div class="table-responsive">
-						<table class="table datatable">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Employee</th>
-									<th>Status</th>
-									<th>Description</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="objItem" items="${listItems}">
+					<div class="panel-body" id="body">
+						<div class="table-responsive">
+							<table class="table datatable">
+								<thead>
 									<tr>
-										<td>${objItem.getId()}</td>
-										<td>${objItem.getUserName()}</td>
-										<td id="td_Status"><select id="status" name="status"
-											onchange="changeStatus(${objItem.getId()})"
-											class="form-control" style="width: 70%;">
-												<c:if test="${objItem.getStatus() eq 'new'}">
-													<option value="new" selected="selected">new</option>
-													<option value="in progress">in progress</option>
-												</c:if>
-												<c:if test="${objItem.getStatus() eq 'in progress'}">
-													<option value="in progress" selected="selected">in
-														progress</option>
-													<option value="resolved">resolved</option>
-												</c:if>
-												<c:if test="${objItem.getStatus() eq 'resolved'}">
-													<option value="resolved" selected="selected">resolved</option>
-												</c:if>
-										</select></td>
-										<td>${objItem.getDescription()}</td>
-										<td><a
-											href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
-											class="btn btn-danger btn-rounded btn-sm"
-											onClick="return confirm('Do you want delete?')"><span
-												class="fa fa-times"></span></a></td>
-								</c:forEach>
-							</tbody>
-						</table></div>
+										<th>ID</th>
+										<th>Employee</th>
+										<th>Status</th>
+										<th>Description</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="objItem" items="${listItems}">
+										<tr>
+											<td>${objItem.getId()}</td>
+											<td>${objItem.getUserName()}</td>
+
+											<c:choose>
+												<c:when test="${objLogin.getRole() eq 'ADMIN'}">
+
+													<td id="td_Status"><select id="status" name="status"
+														onchange="changeStatus(${objItem.getId()})"
+														class="form-control" style="width: 70%;">
+
+															<c:if test="${objItem.getStatus() eq 'new'}">
+																<option value="new" selected="selected">new</option>
+																<option value="in progress">in progress</option>
+															</c:if>
+
+															<c:if test="${objItem.getStatus() eq 'in progress'}">
+																<option value="in progress" selected="selected">in
+																	progress</option>
+																<option value="resolved">resolved</option>
+															</c:if>
+
+															<c:if test="${objItem.getStatus() eq 'resolved'}">
+																<option value="resolved" selected="selected">resolved</option>
+															</c:if>
+
+													</select></td>
+												</c:when>
+												<c:otherwise>
+													<td>${objItem.getStatus()}</td>
+												</c:otherwise>
+											</c:choose>
+
+											<td>${objItem.getDescription()}</td>
+											<td><a
+												href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
+												class="btn btn-danger btn-rounded btn-sm"
+												onClick="return confirm('Do you want delete?')"><span
+													class="fa fa-times"></span></a></td>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->
@@ -112,24 +141,20 @@
 		function changeStatus(id){
 			var se = document.getElementById("status");
 			var status = se.options[se.selectedIndex].text;
-			alert(id+" "+status);
+		//	alert(id+" "+status);
 			$.ajax({
 				url: '${pageContext.request.contextPath}/contact/edit',
 				type: 'POST',
 				cache: false, 
 				data: {
-						//Dữ liệu gửi đi
 					id: id,
 				    status: status,
 						},
 				success: function(data){
-					// Xử lý thành công
-				
 					$("td_Status").html(data);
 				},
 				error: function (){
-				// Xử lý nếu có lỗi
-				alert("Có lỗi trong quá trình xử lý");
+				alert("Have some errors");
 				}
 			});
 		}

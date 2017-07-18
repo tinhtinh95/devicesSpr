@@ -56,11 +56,6 @@
                                     <div style="color:blue; font-size:20px;text-align:center">Delete Successfully</div>
                                 </c:if>
                                 
-                                    <ul class="panel-controls">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                    </ul>                                
                                 </div>
                                 <div class="panel-body">
                                     <table class="table datatable">

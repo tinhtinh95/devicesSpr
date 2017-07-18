@@ -81,6 +81,7 @@
                                                 <th>Devices</th>
                                                  <th>Seri number</th>
                                                 <th>actions</th>
+                                                <th>Funtions</th>
                                             </tr>
                                         </thead>
                                         <tbody>

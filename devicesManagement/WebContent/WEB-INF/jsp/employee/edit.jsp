@@ -108,7 +108,7 @@
 											value="${objEmployee.email}" name="email"
 											class="form-control" />
 									</div>
-									<span class="help-block"><form:errors path = "objEmployee.address" style="color:red"></form:errors></span>
+									<span class="help-block"><form:errors path = "objEmployee.email" style="color:red"></form:errors></span>
 								</div>
 							</div>
 						</div>

@@ -19,8 +19,8 @@ public class DeviceDAO {
 	// id employee
 	public List<Devices> getItemsByEmployee(String id){
 		String sql="select d.id,d.seri_number,d.idAccount,d.name,d.made_in,d.price,d.warranty,d.picture,"
-				+"account.id_Employee from devices as d left join account "
-				+"on d.idAccount = account.id where account.id_Employee ='"+id+"'";
+				+"Account.id_Employee from Devices as d left join Account "
+				+"on d.idAccount = Account.id where Account.id_Employee ='"+id+"'";
 				
 				
 				

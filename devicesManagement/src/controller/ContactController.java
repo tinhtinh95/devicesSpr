@@ -30,10 +30,20 @@ public class ContactController {
 	private AccountDAO accountDAO;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String home(ModelMap modelMap) {
+	public String home(ModelMap modelMap, HttpSession session) {
+		Account objLogin = (Account) session.getAttribute("objLogin");
 
-		modelMap.addAttribute("listItems", mainDAO.getItems());
-		return "contact.index";
+		if (objLogin.getRole().equals("ADMIN")) {
+			modelMap.addAttribute("listItems", mainDAO.getItems());
+			modelMap.addAttribute("objLogin", objLogin);
+			
+			return "contact.index";
+		} else {
+			modelMap.addAttribute("listItems", mainDAO.getItems(objLogin.getId()));
+			modelMap.addAttribute("objLogin", objLogin);
+			return "contact.index";
+		}
+
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -42,11 +52,10 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(HttpSession session,@RequestParam("description") String description,
-			ModelMap modelMap) {
+	public String add(HttpSession session, @RequestParam("description") String description, ModelMap modelMap) {
 		String username = (String) session.getAttribute("userLogin");
 		Account objAC = accountDAO.getItem(username);
-		int idAccount=objAC.getId();
+		int idAccount = objAC.getId();
 		Contact contact = new Contact(idAccount, description);
 
 		if (mainDAO.addItem(contact) == 1) {
