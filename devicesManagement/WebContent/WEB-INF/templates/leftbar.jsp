@@ -20,7 +20,7 @@ color:#F30E2B;
 				</a>
 					<div class="profile">
 						<div class="profile-image">
-							<img
+							<img style="width:100px;height:112px"
 								src="${pageContext.request.contextPath}/files/${objLogin.picture}"
 								alt="${objLogin.username}" />
 						</div>

@@ -22,15 +22,15 @@
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/employee">Employee</a></li>
+                    <li class="active">Add New Employee</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Employee</h2>
+                    <h2> Add Employee</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

@@ -22,16 +22,15 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+        <li class="active">Employee</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Employee
+			 Employee
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -69,14 +68,6 @@
 					<div class="panel-heading">
 						<a href="${pageContext.request.contextPath }/employee/add"
 							type="button" class="btn btn-info">Add</a>
-						<ul class="panel-controls">
-							<li><a href="#" class="panel-collapse"><span
-									class="fa fa-angle-down"></span></a></li>
-							<li><a href="#" class="panel-refresh"><span
-									class="fa fa-refresh"></span></a></li>
-							<li><a href="#" class="panel-remove"><span
-									class="fa fa-times"></span></a></li>
-						</ul>
 					</div>
 					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">

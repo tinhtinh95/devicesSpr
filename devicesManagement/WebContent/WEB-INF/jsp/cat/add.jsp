@@ -61,7 +61,7 @@ function check(str) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Account</h2>
+                    <h2>  Add Account</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

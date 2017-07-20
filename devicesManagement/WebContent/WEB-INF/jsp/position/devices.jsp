@@ -20,11 +20,18 @@
 				
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
-
+			
+			<!-- START BREADCRUMB -->
+			<ul class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		        <li><a href="${pageContext.request.contextPath }/position">Position</a></li>                     
+				<li class="active">Devices of ${nameEm} </li>
+			</ul>
+			<!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Device of ${nameEm} </h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Device of <strong> ${nameEm}</strong> </h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

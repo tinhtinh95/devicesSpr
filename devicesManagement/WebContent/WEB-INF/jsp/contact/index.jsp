@@ -23,17 +23,14 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		<li class="active">Contact</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
-		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Contact
-		</h2>
+		<h2>Contact</h2>
 	</div>
 	<!-- END PAGE TITLE -->
 
@@ -93,9 +90,11 @@
 											<td>${objItem.getUserName()}</td>
 
 											<c:choose>
-												<c:when test="${objLogin.getRole() eq 'ADMIN'}">
+												<c:when
+													test="${objLogin.getRole() eq 'ADMIN' && objItem.getStatus() ne 'resolved'}">
 
-													<td id="td_Status"><select id="status" name="status"
+													<td id="td_Status${objItem.getId()}"><select
+														id="status${objItem.getId()}" name="status"
 														onchange="changeStatus(${objItem.getId()})"
 														class="form-control" style="width: 70%;">
 
@@ -139,9 +138,14 @@
 		</div>
 		<script type="text/javascript">
 		function changeStatus(id){
-			var se = document.getElementById("status");
+			
+			var idSelect="status"+id;
+			var idTd="td_Status"+id;
+			var se = document.getElementById(idSelect);
 			var status = se.options[se.selectedIndex].text;
-		//	alert(id+" "+status);
+			
+			//alert(id+" "+status+idTd);
+			
 			$.ajax({
 				url: '${pageContext.request.contextPath}/contact/edit',
 				type: 'POST',
@@ -149,9 +153,10 @@
 				data: {
 					id: id,
 				    status: status,
-						},
+				},
 				success: function(data){
-					$("td_Status").html(data);
+					//alert(data);
+					$("#"+idTd).html(data);
 				},
 				error: function (){
 				alert("Have some errors");

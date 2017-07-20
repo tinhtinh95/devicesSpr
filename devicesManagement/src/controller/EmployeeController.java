@@ -2,10 +2,12 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import dao.AccountDAO;
 import dao.EmployeeDAO;
 import dao.PositionDAO;
 import dao.TeamDAO;
+import entities.Account;
 import entities.Employee;
 import utils.RenameFileLibrary;
 
@@ -39,6 +43,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private TeamDAO teamDAO;
+	
+	@Autowired 
+	private AccountDAO accountDAO;
 	
 	@Autowired
 	private RenameFileLibrary renameFileLibrary;
@@ -136,7 +143,12 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult,
-			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request) {
+			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, 
+			HttpServletRequest request,HttpSession session,Principal principal) {
+		// change picture and update it
+		String user=(String)session.getAttribute("userLogin");
+		Account objLogin = (Account) session.getAttribute("objLogin");
+		
 		if(bindingResult.hasErrors()){
 			return "employee.edit";
 		}
@@ -184,6 +196,13 @@ public class EmployeeController {
 		}
 
 		if (employeeDAO.editItem(objEmployee) > 0) {
+			System.out.println(employeeDAO.getItem(id).getId());
+			System.out.println(objLogin.getId_Employee());
+			if((employeeDAO.getItem(id).getId()).equals(objLogin.getId_Employee())){
+				session.removeAttribute("objLogin");
+				session.setAttribute("objLogin",accountDAO.getItem(user));
+				accountDAO.getItem(user).getPicture();
+			}
 			return "redirect:/employee?msg=edit";
 		} else {
 			return "redirect:/employee?msg=error";

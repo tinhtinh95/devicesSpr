@@ -122,6 +122,7 @@ public class AccountController {
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(ModelMap modelMap, @PathVariable("id") int id) {
 		System.out.println("detail");
+		modelMap.addAttribute("devicesofName", mainDAO.getItem(id).getUsername());
 		modelMap.addAttribute("objDevice", mainDAO.getItems(id));
 		return "account.detail";
 	}

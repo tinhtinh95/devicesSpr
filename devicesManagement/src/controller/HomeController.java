@@ -37,6 +37,7 @@ public class HomeController {
 			session.setAttribute("userLogin",principal.getName());
 //			session.setAttribute("objLogin",accountDAOLogin);
 			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
+			System.out.println(accountDAO.getItem(principal.getName()).getPicture());
 		}
 		
 	}
