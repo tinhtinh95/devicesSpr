@@ -18,6 +18,11 @@
     <context:component-scan base-package="controller" />
     <context:component-scan base-package="dao" />
     <context:component-scan base-package="entities" /> 
+	<!-- PDF -->
+	<bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+  		<property name="basename" value="views"/>
+	</bean>
+	<!-- PDF  -->
 	
 	<!-- Email -->
 	
@@ -52,7 +57,7 @@
 	
 	  <bean id="myDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-         <property name="url" value="jdbc:mysql://localhost:3306/DevicesManagement"/>
+         <property name="url" value="jdbc:mysql://localhost:3306/DevicesManagement1"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
     </bean> 
