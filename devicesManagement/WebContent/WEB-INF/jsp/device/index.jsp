@@ -56,11 +56,6 @@
 		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
 								Again</div>
 	</c:when>
-	<c:when test="${param['msg'] eq null}">
-	</c:when>
-	<c:otherwise>
-		<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
-	</c:otherwise>
 </c:choose>
 
 		<div class="row">

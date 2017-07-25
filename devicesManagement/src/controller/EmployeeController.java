@@ -68,7 +68,9 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String home(ModelMap modelMap) {
+	public String home(ModelMap modelMap,HttpSession session) {
+		Account objLogin = (Account) session.getAttribute("objLogin");
+		modelMap.addAttribute("idEmLogin", objLogin.getId_Employee());
 		modelMap.addAttribute("listItems", employeeDAO.getList());
 		return "employee.index";
 	}
@@ -118,7 +120,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/del/{id}", method = RequestMethod.GET)
-	public String del(@PathVariable("id") String id, HttpServletRequest request) {
+	public String del(@PathVariable("id") String id, HttpServletRequest request,HttpSession session) {
+		Account objLogin = (Account) session.getAttribute("objLogin");
+		Account objEdit=accountDAO.getItemByIDEmployee(id);
+		if(!"ADMIN".equals(objLogin.getRole()) && (objLogin.getId()!=objEdit.getId())){
+			return "redirect:/403";
+		}
 		// delete file img
 		String picture = employeeDAO.getItem(id).getPicture();
 		final String path = request.getServletContext().getRealPath("files");
@@ -136,7 +143,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") String id, ModelMap modelMap) {
+	public String edit(@PathVariable("id") String id, ModelMap modelMap,HttpSession session) {
+		Account objLogin = (Account) session.getAttribute("objLogin");
+		Account objEdit=accountDAO.getItemByIDEmployee(id);
+		if(!"ADMIN".equals(objLogin.getRole()) && (objLogin.getId()!=objEdit.getId())){
+			return "redirect:/403";
+		}
 		modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
 		return "employee.edit";
 	}

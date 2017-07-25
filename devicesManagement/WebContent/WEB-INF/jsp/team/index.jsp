@@ -37,32 +37,42 @@
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">                
-                
+                <c:choose>
+	<c:when test="${param['msg'] eq 'add'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Add
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'edit'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Update
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'del'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Delete
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'err'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
+								Again</div>
+	</c:when>
+</c:choose>
+
                     <div class="row">
                         <div class="col-md-12">
 
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
+                            <c:if test="${objLogin.role eq 'ADMIN' }"> 
                                 <div class="panel-heading">                                
                                     <a href="${pageContext.request.contextPath }/team/add" type="button" class="btn btn-info">Add</a>
-                                    <c:if test="${param['msg'] eq 'add' }">
-                                    <div style="color:blue; font-size:20px;text-align:center">Add Successfully</div>
-                                </c:if>
-                                	<c:if test="${param['msg'] eq 'edit' }">
-                                    <div style="color:blue; font-size:20px;text-align:center">Edit Successfully</div>
-                                </c:if>
-                                <c:if test="${param['msg'] eq 'del' }">
-                                    <div style="color:blue; font-size:20px;text-align:center">Delete Successfully</div>
-                                </c:if>
-                                
-                                </div>
+                                </div></c:if>
                                 <div class="panel-body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>Actions</th>
+                                                <c:if test="${objLogin.role eq 'ADMIN' }"> 
+                                                <th>Actions</th></c:if>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -70,10 +80,12 @@
                                             <tr>
                                                 <td>${objItem.id }</td>
                                                 <td><a href="${pageContext.request.contextPath }/team/employee/${objItem.id}">${objItem.name }</a></td>
+                                                
+                                                <c:if test="${objLogin.role eq 'ADMIN' }"> 
                                                 <td>
                                                         <a href="${pageContext.request.contextPath }/team/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
                                                         <a href="${pageContext.request.contextPath }/team/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
-                                                    </td>
+                                                    </td></c:if>
                                             </tr>
                                        </c:forEach>
                                         </tbody>

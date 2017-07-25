@@ -18,7 +18,7 @@
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 	<script type="text/javascript">
-		$(document)
+		/* $(document)
 				.ready(
 						function() {
 							$("#frm")
@@ -36,7 +36,19 @@
 													},
 												},
 											});
-						});
+						}); */
+	    function checkID(){
+	    	var x=document.frm.description.value;
+	    	var check=true;
+			 if (x == '') {
+				document.getElementById("erDes").innerHTML = "Please input!";
+				check=false;
+			}else{
+				document.getElementById("erDes").innerHTML = "";
+				check=true;
+			}
+			 return check;
+	}
 	</script>
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
@@ -58,7 +70,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form id="frm"
+					<form id="frm" name="frm" onsubmit="return checkID()"
 						action="${pageContext.request.contextPath}/contact/add"
 						method="post" class="form-horizontal" role="form">
 						<div class="col-md-12">
@@ -71,11 +83,11 @@
 												class="fa fa-pencil"></span></span>
 										</div>
 										<div style="float: left;">
-											<input type="text" name="description" class="form-control" />
+											<input onkeyup="return checkID()" onfocus="return checkID()" type="text" name="description" class="form-control" />
 										</div>
 									</div>
-									<span class="help-block">Ex: My PC was destroyed by
-										Torres.</span>
+									<span id="erDes" style="color:red" class="help-block">
+										</span>
 								</div>
 							</div>
 						</div>

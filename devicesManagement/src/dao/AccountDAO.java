@@ -105,7 +105,7 @@ public class AccountDAO {
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Account getItemByIDEmployee(String id) {
-		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where Employee.id=?";
+		String sql = "Select Account.id_Employee,Account.id,username,password from Account inner join Employee on Employee.id=Account.id_Employee where Employee.id=?";
 		try{
 			return (Account) jdbcTemplate.queryForObject(sql, new Object[] { id },
 					new BeanPropertyRowMapper(Account.class));

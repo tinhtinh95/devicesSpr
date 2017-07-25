@@ -36,6 +36,20 @@
 
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
+<c:choose>
+			<c:when test="${param['msg'] eq 'add'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Add
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'del'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Delete
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'err'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Error.Try
+								Again</div>
+			</c:when>
+		</c:choose>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -57,19 +71,6 @@
 
 							</c:otherwise>
 						</c:choose>
-
-						<c:if test="${param['msg'] eq 'add' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Add
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'del' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Del
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'err' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
-								Again</div>
-						</c:if>
 					</div>
 					<div class="panel-body" id="body">
 						<div class="table-responsive">
