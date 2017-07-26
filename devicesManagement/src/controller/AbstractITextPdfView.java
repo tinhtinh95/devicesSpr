@@ -1,8 +1,10 @@
 package controller; 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.OutputStream;
 import java.util.Map;
- 
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
@@ -20,8 +22,10 @@ import com.itextpdf.text.pdf.PdfWriter;
  */
 public abstract class AbstractITextPdfView extends AbstractView {
  
+	
     public AbstractITextPdfView() {
-        setContentType("application/pdf");
+    	
+    	setContentType("application/pdf");
     }
  
     @Override
@@ -46,12 +50,20 @@ public abstract class AbstractITextPdfView extends AbstractView {
         buildPdfDocument(model, document, writer, request, response);
         document.close();
  
+//        final ServletContext servletContext = request.getSession().getServletContext();
+//	    final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+//	    final String temperotyFilePath = tempDirectory.getAbsolutePath();
+        
         // Flush to HTTP response. 
         writeToResponse(response, baos);
+//        baos = convertPDFToByteArrayOutputStream(temperotyFilePath+"\\"+fileName);
+//        OutputStream os = response.getOutputStream();
+//        baos.writeTo(os);
+//        os.flush();
     }
  
     protected Document newDocument() {
-        return new Document(PageSize.A4);
+        return new Document(PageSize.A8);
     }
      
     protected PdfWriter newWriter(Document document, OutputStream os) throws DocumentException {
@@ -74,3 +86,7 @@ public abstract class AbstractITextPdfView extends AbstractView {
     protected abstract void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
+
+
+
+

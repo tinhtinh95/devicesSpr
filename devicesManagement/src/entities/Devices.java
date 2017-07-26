@@ -136,6 +136,10 @@ public class Devices {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@Override
+	public String toString() {
+		return "seri: " + seri_number + "\nname: " + name;
+	}
 	
 	
 }

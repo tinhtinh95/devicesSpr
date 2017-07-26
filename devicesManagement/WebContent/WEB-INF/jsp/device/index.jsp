@@ -39,10 +39,12 @@
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
 
-<c:choose>
+<%-- <c:choose>
 	<c:when test="${param['msg'] eq 'add'}">
-		<div class=" alert alert-success" style="font-size: 20px;">Add
-			Success</div>
+		<div style="color: blue; font-size: 20px; text-align: center;width:300px">Add
+			Success
+			</div>
+			
 	</c:when>
 	<c:when test="${param['msg'] eq 'edit'}">
 		<div class=" alert alert-success" style="font-size: 20px;">Update
@@ -56,8 +58,7 @@
 		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
 								Again</div>
 	</c:when>
-</c:choose>
-
+</c:choose> --%>
 		<div class="row">
 			<div class="col-md-12">
 
@@ -68,9 +69,15 @@
 
 						<a href="${pageContext.request.contextPath }/device/add"
 							type="button" class="btn btn-info">Add</a>
-						<%-- <c:if test="${param['msg'] eq 'add' }">
+						<c:if test="${param['msg'] eq 'add' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Add
-								Success</div>
+								Success
+								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
+								<c:set value="${param['seri']}" var="seri_number"> </c:set>
+								<c:if test="${idAccount ne '' }">
+								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
+								</c:if>
+								</div>
 						</c:if>
 						<c:if test="${param['msg'] eq 'edit' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Edit
@@ -83,7 +90,7 @@
 						<c:if test="${param['msg'] eq 'err' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
 								Again</div>
-						</c:if> --%>
+						</c:if> 
 					</div></c:if> 
 					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
