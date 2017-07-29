@@ -22,7 +22,23 @@ public class ContactDAO {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Contact.class));
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public int numberOfNewMessages(int id, String role) {
+
+		String sql = "";
+		if (role.equals("ADMIN")) {
+			sql = "SELECT COUNT(id) FROM Contact WHERE STATUS ='new'";
+		} else {
+			sql = "SELECT COUNT(id) FROM Contact WHERE STATUS ='new' AND id_Account='" + id + "'";
+		}
+
+		try {
+			return jdbcTemplate.queryForObject(sql, Integer.class);
+
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
 	public List<Contact> getItems(int id) {
 		String sql = "select id,id_Account, (SELECT username from Account WHERE Account.id= id_Account) as userName,  status, description from Contact where id_Account='"
 				+ id + "' GROUP BY id DESC";

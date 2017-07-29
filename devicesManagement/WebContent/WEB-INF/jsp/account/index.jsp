@@ -158,22 +158,28 @@
 					</div>
 					<script type="text/javascript">
 									function getActive(id, enabled){
-										$.ajax({
-											url: '${pageContext.request.contextPath}/account/active',
-											type: 'POST',
-											cache: false, 
-											data: {
-												id: id,
-											    enabled: enabled,
-													},
-											success: function(data){
-											
-												$("#ajaxpicture"+id).html(data);
-											},
-											error: function (){
-											}
-										});
-										return false;
+										//var result = confirm("Do you want to change it?");
+										//if(resut){
+											$.ajax({
+												url: '${pageContext.request.contextPath}/account/active',
+												type: 'POST',
+												cache: false, 
+												data: {
+													id: id,
+												    enabled: enabled,
+														},
+												success: function(data){
+												
+													$("#ajaxpicture"+id).html(data);
+													//alert("It be changed");
+												},
+												error: function (){
+												}
+											});
+										//}else{
+											//alert("It haven't yet changed");
+										//}
+										
 									}
 								</script>
 				</div>

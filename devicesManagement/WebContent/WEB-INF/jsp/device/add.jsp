@@ -48,6 +48,9 @@
 		
 		function check() {
 			
+			var idCat = document.frm.idCat.value;
+			alert(idCat);
+			
 			var check = true;
 			var id = document.frm.id.value;
 			var seri = document.frm.seri_number.value;
@@ -276,12 +279,23 @@
 									<div class="form-group">
 										<label class="col-md-3 col-xs-12 control-label">Category</label>
 										<div class="col-md-6 col-xs-12">
-											<select name="idCat" class="form-control select">
+											<%-- <select name="idCat" class="form-control select">
 												<option value="-1">--Choose category--</option>
 												<c:forEach items="${listCats }" var="objCat">
 													<option value="${objCat.id }">${objCat.name }</option>
 												</c:forEach>
-											</select> <span id="erIdCat" style="color: red" class="help-block"></span>
+											</select> <span id="erIdCat" style="color: red" class="help-block"></span> --%>
+											
+											<input type="text" onfocus="checkID(this.value,'erIdCat')"
+													onkeyup="checkID(this.value,'erIdCat')"  list="idCat" name="idCat" />
+											<datalist  id="idCat">
+											  <c:forEach items="${listCats }" var="objCat">
+													<option value="${objCat.name }">
+												</c:forEach>
+											</datalist>
+											
+											<span id="erIdCat" style="color: red" class="help-block"></span>
+											
 										</div>
 									</div>
 									<div class="form-group">

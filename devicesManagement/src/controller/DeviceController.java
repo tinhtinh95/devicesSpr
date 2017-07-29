@@ -302,7 +302,7 @@ public class DeviceController {
 	        e1.printStackTrace();
 	    }
  
-	}  
+	} 
 	
 	private ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
  

@@ -67,7 +67,7 @@ public class AccountDAO {
 			return jdbcTemplate.update(sql,
 					new Object[] { objItem.getUsername(), StringUtils.md5(objItem.getPassword()), objItem.getId() });
 		} else {
-			String sql = "update Account set username=?,role=? where id=?";
+			String sql = "update Account set username=? where id=?";
 			return jdbcTemplate.update(sql, new Object[] { objItem.getUsername(), objItem.getId() });
 		}
 	}

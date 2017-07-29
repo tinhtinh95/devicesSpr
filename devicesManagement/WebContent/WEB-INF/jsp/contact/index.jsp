@@ -17,7 +17,6 @@
 				class="fa fa-sign-out"></span></a></li>
 		<!-- END SIGN OUT -->
 
-
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 
@@ -36,20 +35,6 @@
 
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
-<c:choose>
-			<c:when test="${param['msg'] eq 'add'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Add
-					Success</div>
-			</c:when>
-			<c:when test="${param['msg'] eq 'del'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Delete
-					Success</div>
-			</c:when>
-			<c:when test="${param['msg'] eq 'err'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Error.Try
-								Again</div>
-			</c:when>
-		</c:choose>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -71,6 +56,19 @@
 
 							</c:otherwise>
 						</c:choose>
+
+						<c:if test="${param['msg'] eq 'add' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Add
+								Success</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'del' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Del
+								Success</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'err' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
+								Again</div>
+						</c:if>
 					</div>
 					<div class="panel-body" id="body">
 						<div class="table-responsive">
@@ -122,11 +120,22 @@
 											</c:choose>
 
 											<td>${objItem.getDescription()}</td>
-											<td><a
-												href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
-												class="btn btn-danger btn-rounded btn-sm"
-												onClick="return confirm('Do you want delete?')"><span
-													class="fa fa-times"></span></a></td>
+											<td><c:choose>
+													<c:when test="${objItem.getStatus() eq 'resolved'}">
+														<a
+															href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
+															class="btn btn-danger btn-rounded btn-sm"
+															onClick="return confirm('Do you want to delete?')"><span
+															class="fa fa-times"></span></a>
+													</c:when>
+													<c:otherwise>
+														<a id="td_Del${objItem.getId()}"
+															href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
+															class="btn btn-danger btn-rounded btn-sm"
+															onClick="return confirm('Do you want to delete?')"
+															disabled><span class="fa fa-times"></span></a>
+													</c:otherwise>
+												</c:choose></td>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -138,14 +147,14 @@
 
 		</div>
 		<script type="text/javascript">
+		
 		function changeStatus(id){
 			
 			var idSelect="status"+id;
 			var idTd="td_Status"+id;
+			var idDel="td_Del"+id;		
 			var se = document.getElementById(idSelect);
 			var status = se.options[se.selectedIndex].text;
-			
-			//alert(id+" "+status+idTd);
 			
 			$.ajax({
 				url: '${pageContext.request.contextPath}/contact/edit',
@@ -156,11 +165,17 @@
 				    status: status,
 				},
 				success: function(data){
-					//alert(data);
+					
 					$("#"+idTd).html(data);
+					if(data == "resolved")
+						document.getElementById(idDel).removeAttribute("disabled");
+					
+					if(data.indexOf("in progress")!=-1)
+						document.getElementById("numberOfNewMessages").innerHTML= parseInt(document.getElementById("numberOfNewMessages").innerHTML)-1;
 				},
 				error: function (){
-				alert("Have some errors");
+					
+					alert("Have some errors");
 				}
 			});
 		}

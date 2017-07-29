@@ -74,7 +74,7 @@
 								Success
 								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
 								<c:set value="${param['seri']}" var="seri_number"> </c:set>
-								<c:if test="${idAccount ne '' }">
+								<c:if test="${idAccount ne null }">
 								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
 								</c:if>
 								</div>

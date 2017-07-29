@@ -19,11 +19,6 @@
     <context:component-scan base-package="dao" />
     <context:component-scan base-package="entities" /> 
 	
-	<!-- PDF -->
-<bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
-	<property name="basename" value="views"/>
-</bean>
-<!-- PDF  -->
 	
 	<!-- Email -->
 	
