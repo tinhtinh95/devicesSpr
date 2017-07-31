@@ -52,7 +52,7 @@ public class DeviceController {
 		modelMap.addAttribute("mainDAO", mainDAO);
 		//System.out.println(mainDAO.getCount("R01"));
 		return "device.index";
-	}
+	}    
 
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(ModelMap modelMap, @PathVariable("id") String id) {
@@ -60,19 +60,19 @@ public class DeviceController {
 		modelMap.addAttribute("listItemDetails", mainDAO.getItemDetails(id));
 		modelMap.addAttribute("idDetail", id);
 		return "device.detail";
-	}
-
+	}  
+    
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap modelMap) {
 		modelMap.addAttribute("listCats", catDAO.getItems());
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
 		return "device.add";
-	}
+	}  
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("objItem") Devices objItem, BindingResult bindingResult,
 			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request,ModelMap modelMap) {
-		 
+		   
 		 int idAccount=objItem.getIdAccount();
 		 Account account=accountDAO.getItem(idAccount);
 		 
@@ -207,7 +207,7 @@ public class DeviceController {
 				 return "redirect:/device/detail/" + id + "?msg=add";
 		}}else {
 			return "redirect:/device/detail/" + id + "?msg=err";
-		}
+		}  
 	}
 	@RequestMapping(value = "detail/edit/{seri_number}", method = RequestMethod.GET)
 	public String edit1(@PathVariable("seri_number") String seri_number, ModelMap modelMap) {
@@ -238,7 +238,7 @@ public class DeviceController {
 			return "redirect:/device/detail/" + id + "?msg=err";
 		}
 	}
-
+  
 	@RequestMapping(value = "detail/del/{seri_number}", method = RequestMethod.GET)
 	public String del1(@PathVariable("seri_number") String seri_number) {
 		Devices objD = mainDAO.getItem(seri_number);

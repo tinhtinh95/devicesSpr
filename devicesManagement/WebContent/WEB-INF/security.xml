@@ -56,9 +56,10 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
  
         <logout logout-url="/logout" logout-success-url="/login"
             delete-cookies="JSESSIONID" invalidate-session="true" />
-            
-            <remember-me key="uniqueAndSecret" token-validity-seconds="84600"/>
-             <!-- <remember-me token-validity-seconds="30" remember-me-parameter="remember-me"  />  --> 
+
+				<remember-me key="remember-me" token-validity-seconds="99999999"/>             
+             <!--  <remember-me key="uniqueAndSecret" token-validity-seconds="30"/>  -->
+              <!-- <remember-me token-validity-seconds="30" remember-me-parameter="remember-me"  />  -->  
  
     </http>
     
