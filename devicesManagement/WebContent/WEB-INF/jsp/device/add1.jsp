@@ -36,8 +36,13 @@ function check() {
 function format_curency(a) {
     a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }  
-</script>
-<script type="text/javascript">
+function checkID(x, id) {
+	if (x == '') {
+		document.getElementById(id).innerHTML = "Please input";
+	} else {
+		document.getElementById(id).innerHTML = "";
+	}
+}
     function check(){
     	var check=true;
     	var seri=document.frm.seri_number.value;
@@ -125,7 +130,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="seri_number" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erSeri')"
+													onkeyup="checkID(this.value,'erSeri')" name="seri_number" type="text" class="form-control"/>
                                             </div>                                            
                                             <span id="erSeri" style="color:red" class="help-block">
                                             	<%-- <form:errors path="objItem.seri_number" style="color:red"></form:errors> --%>
@@ -148,7 +154,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="price"  onChange="format_curency(this);" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erPrice')"
+													onkeyup="checkID(this.value,'erPrice')" name="price"  onChange="format_curency(this);" type="text" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block" id="erPrice" style="color:red"></span>
                                         </div>
@@ -160,7 +167,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="warranty" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erWarranty')"
+													onkeyup="checkID(this.value,'erWarranty')" name="warranty" type="text" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block" id="erWarranty" style="color:red"></span>
                                         </div>

@@ -126,7 +126,7 @@
 															<a
 																href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
 																	class="btn btn-danger btn-rounded btn-sm"
-																	onClick="delete_row('trow_1');">
+																	onClick="return confirm('Do you want delete?')">
 																	<span class="fa fa-times"></span>
 																</button></a>
 														</c:if></td>
@@ -140,7 +140,7 @@
 															<a
 																href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
 																	class="btn btn-danger btn-rounded btn-sm"
-																	onClick="delete_row('trow_1');">
+																	onClick="return confirm('Do you want delete?')">
 																	<span class="fa fa-times"></span>
 																</button></a>
 														</td>
@@ -158,8 +158,8 @@
 					</div>
 					<script type="text/javascript">
 									function getActive(id, enabled){
-										//var result = confirm("Do you want to change it?");
-										//if(resut){
+										var result = confirm("Do you want to change it?");
+										if(result){
 											$.ajax({
 												url: '${pageContext.request.contextPath}/account/active',
 												type: 'POST',
@@ -176,9 +176,9 @@
 												error: function (){
 												}
 											});
-										//}else{
-											//alert("It haven't yet changed");
-										//}
+										}else{
+											alert("It haven't yet changed");
+										}
 										
 									}
 								</script>

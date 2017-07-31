@@ -71,7 +71,7 @@ public class DeviceController {
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("objItem") Devices objItem, BindingResult bindingResult,
-			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request) {
+			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request,ModelMap modelMap) {
 		 
 		 int idAccount=objItem.getIdAccount();
 		 Account account=accountDAO.getItem(idAccount);
@@ -79,12 +79,12 @@ public class DeviceController {
 		 if(bindingResult.hasErrors()){
 		 return "device.add";
 		 }
-		// if(objItem.getIdAccount()==-1){
-		// objItem.setIdAccount(1);
-		// }
-		if (mainDAO.checkDevices(objItem.getId(), objItem.getSeri_number()) != null) {
-			return "redirect:/device/add?check=err";
-		}
+		 if(mainDAO.getItem(objItem.getSeri_number())!=null){
+			 return "redirect:/device/add?check=err";
+		 }
+//		if (mainDAO.checkDevices(objItem.getId(), objItem.getSeri_number()) != null) {
+//			return "redirect:/device/add?check=err";
+//		}
 
 		String filename = commonsMultipartFile.getOriginalFilename();
 		if (!filename.isEmpty()) {
@@ -105,8 +105,8 @@ public class DeviceController {
 		}
 		objItem.setPicture(filename);
 		if (mainDAO.addItem(objItem) > 0) {
-			if(!"ADMIN".equals(account.getRole())){
-				System.out.println(idAccount+" "+objItem.getSeri_number());
+			System.out.println(idAccount+" "+objItem.getSeri_number());
+			if(!"ADMINISTRATOR".equals(account.getUsername())){
 				return "redirect:/device?msg=add&idAC="+idAccount+"&seri="+objItem.getSeri_number();
 			 }else{
 				 return "redirect:/device?msg=add";
@@ -127,8 +127,6 @@ public class DeviceController {
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.POST)
 	public String edit(@PathVariable("id") String id, @ModelAttribute("objItemUpdate") Devices objItemUpdate,
 			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request) {
-		int idAccount=objItemUpdate.getIdAccount();
-		 Account account=accountDAO.getItem(idAccount);
 		
 		Devices objD = mainDAO.getItemDetail(id);
 		objItemUpdate.setId(id);
@@ -161,12 +159,7 @@ public class DeviceController {
 		}
 
 		if (mainDAO.editItem(objItemUpdate) > 0) {
-			if(!"ADMIN".equals(account.getRole())){
-				System.out.println(idAccount+" "+objItemUpdate.getSeri_number());
-				return "redirect:/device?msg=edit&idAC="+idAccount+"&seri="+objItemUpdate.getSeri_number();
-			 }else{
 				 return "redirect:/device?msg=edit";
-			 }
 		} else {
 			return "redirect:/device?msg=err";
 		}
@@ -191,6 +184,10 @@ public class DeviceController {
 	@RequestMapping(value = "detail/add/{id}", method = RequestMethod.POST)
 	public String add1(@PathVariable("id") String id, ModelMap modelMap, @ModelAttribute("objItem") Devices objItem) {
 		Devices objD = mainDAO.getItemDetail(id);
+		int idAccount=objItem.getIdAccount();
+		 Account account=accountDAO.getItem(idAccount);
+		
+		
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
 		modelMap.addAttribute("iddetail", id);
 		objItem.setId(id);
@@ -204,12 +201,14 @@ public class DeviceController {
 		}
 
 		if (mainDAO.addItem(objItem) > 0) {
-			return "redirect:/device/detail/" + id + "?msg=add";
-		} else {
+			if(!"ADMINISTRATOR".equals(account.getUsername())){
+				return "redirect:/device/detail/"+id+"?msg=add&idAC="+idAccount+"&seri="+objItem.getSeri_number();
+			 }else{
+				 return "redirect:/device/detail/" + id + "?msg=add";
+		}}else {
 			return "redirect:/device/detail/" + id + "?msg=err";
 		}
 	}
-
 	@RequestMapping(value = "detail/edit/{seri_number}", method = RequestMethod.GET)
 	public String edit1(@PathVariable("seri_number") String seri_number, ModelMap modelMap) {
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
@@ -225,10 +224,16 @@ public class DeviceController {
 			@ModelAttribute("objDeviceEdit") Devices objDeviceEdit) {
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
 		Devices objD = mainDAO.getItem(seri_number);
+		int idAccount=objDeviceEdit.getIdAccount();
+		 Account account=accountDAO.getItem(idAccount);
+		
 		String id = objD.getId();
 		modelMap.addAttribute("iddetail", id);
 		if (mainDAO.editItem1(objDeviceEdit) > 0) {
-			return "redirect:/device/detail/" + id + "?msg=edit";
+			if(!"ADMINISTRATOR".equals(account.getUsername())){
+				return "redirect:/device/detail/"+id+"?msg=edit&idAC="+idAccount+"&seri="+objDeviceEdit.getSeri_number();
+			 }else{
+			return "redirect:/device/detail/" + id + "?msg=edit";}
 		} else {
 			return "redirect:/device/detail/" + id + "?msg=err";
 		}
@@ -238,7 +243,8 @@ public class DeviceController {
 	public String del1(@PathVariable("seri_number") String seri_number) {
 		Devices objD = mainDAO.getItem(seri_number);
 		String id = objD.getId();
-		if (mainDAO.delItem(seri_number) > 0) {
+		System.out.println(id);
+		if (mainDAO.delItemSeri(seri_number) > 0) {
 			return "redirect:/device/detail/" + id + "?msg=del";
 		} else {
 			return "redirect:/device/detail/" + id + "?msg=err";

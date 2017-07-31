@@ -39,6 +39,7 @@ public class ContactDAO {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Contact> getItems(int id) {
 		String sql = "select id,id_Account, (SELECT username from Account WHERE Account.id= id_Account) as userName,  status, description from Contact where id_Account='"
 				+ id + "' GROUP BY id DESC";

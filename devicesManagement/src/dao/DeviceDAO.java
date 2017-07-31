@@ -21,9 +21,6 @@ public class DeviceDAO {
 		String sql="select d.id,d.seri_number,d.idAccount,d.name,d.made_in,d.price,d.warranty,d.picture,"
 				+"Account.id_Employee from Devices as d left join Account "
 				+"on d.idAccount = Account.id where Account.id_Employee ='"+id+"'";
-				
-				
-				
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Devices.class));
 	}
 	
@@ -82,7 +79,11 @@ public class DeviceDAO {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Devices getItem(String seri) {
 		String sql="select * from Devices where seri_number=?";
-		return (Devices) jdbcTemplate.queryForObject(sql, new Object[]{seri},new BeanPropertyRowMapper(Devices.class));
+		try{
+			return (Devices) jdbcTemplate.queryForObject(sql, new Object[]{seri},new BeanPropertyRowMapper(Devices.class));
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 	public int editItem(Devices objItem) {

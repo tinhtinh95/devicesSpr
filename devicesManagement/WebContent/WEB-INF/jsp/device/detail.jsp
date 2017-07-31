@@ -60,7 +60,7 @@ function Change(idAccount,seri) {
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">                
-					<c:choose>
+					<%-- <c:choose>
 	<c:when test="${param['msg'] eq 'add'}">
 		<div class=" alert alert-success" style="font-size: 20px;">Add
 			Success</div>
@@ -82,7 +82,7 @@ function Change(idAccount,seri) {
 	<c:otherwise>
 		<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
 	</c:otherwise>
-</c:choose>
+</c:choose> --%>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -92,11 +92,46 @@ function Change(idAccount,seri) {
 				<c:if test="${objLogin.role eq 'ADMIN' }"> 
 					<div class="panel-heading">
 
+						<a href="${pageContext.request.contextPath }/device/detail/add/${idDetail}"
+							type="button" class="btn btn-info">Add</a>
+						<c:if test="${param['msg'] eq 'add' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Add
+								Success
+								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
+								<c:set value="${param['seri']}" var="seri_number"> </c:set>
+								<c:if test="${idAccount ne null }">
+								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
+								</c:if>
+								</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'edit' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Edit
+								Success
+								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
+								<c:set value="${param['seri']}" var="seri_number"> </c:set>
+								<c:if test="${idAccount ne null }">
+								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
+								</c:if>
+								</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'del' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Del
+								Success</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'err' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
+								Again</div>
+						</c:if> 
+					</div></c:if> 
+				
+				<%-- <c:if test="${objLogin.role eq 'ADMIN' }"> 
+					<div class="panel-heading">
+
 						<a
 							href="${pageContext.request.contextPath }/device/detail/add/${idDetail}"
 							type="button" class="btn btn-info">Add</a>
 					</div></c:if> 
-					
+					 --%>
 					<div class="panel-body" id="body"><div class="table-responsive">
                                     <table id="example" class="table datatable" style="text-align:center">
                                         <thead>
@@ -125,7 +160,7 @@ function Change(idAccount,seri) {
                                                     <c:if test="${objItem.idAccount ne -1}">${objItem.idAccount}</c:if>
                                                 </td> --%>
                                                 <c:if test="${objLogin.role eq 'ADMIN' }">
-                                                <td  id="change${objItem.seri_number }">
+                                                <td id="change${objItem.seri_number }">
                                                 	<select onchange="return Change(this.value,'${objItem.seri_number}')" name="idAccount" class="form-control select">
 		                                            <c:forEach items="${listAccounts }" var="objAccount">
 		                                            <c:choose>

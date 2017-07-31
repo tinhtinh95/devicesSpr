@@ -7,40 +7,40 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class Devices {
 
-	@NotEmpty(message="ID is required!")
+	@NotEmpty(message="ID is required")
 	private String id;
 	
-	@NotEmpty(message="Seri_number is required!")
+	@NotEmpty(message="Seri_number is required")
 	private String seri_number;
 	
-//	@NotEmpty(message="You have to choose it!")
+//	@NotEmpty(message="You have to choose it")
 	
-	//@Pattern(regexp = "[1-9]", message = "You have to choose it!")
-	@NotNull(message="You have to choose it!")
+	//@Pattern(regexp = "[1-9]", message = "You have to choose it")
+	@NotNull(message="You have to choose it")
 	@Value("#{new Integer.parseInt('${api.orders.idAccount}')}")
 	
 	private int idAccount;
 	
-	//@NotEmpty(message="You have to choose it!")
-	//@NotNull(message="You have to choose it!")
+	//@NotEmpty(message="You have to choose it")
+	//@NotNull(message="You have to choose it")
 	private int idCat;
 	
-	@NotEmpty(message="Name is required!")
+	@NotEmpty(message="Name is required")
 	private String name;
 	
-	@NotEmpty(message="Made in is required!")
+	@NotEmpty(message="Made in is required")
 	private String made_in;
 	
-	@NotEmpty(message="Price is required!")
+	@NotEmpty(message="Price is required")
 	private String price;
 	
-	@NotEmpty(message="Warranty is required!")
+	@NotEmpty(message="Warranty is required")
 	private String warranty;
 	
-	@NotNull(message="You have to choose it!")
+	@NotNull(message="You have to choose it")
 	private int isnew;
 	
-	@NotEmpty(message="Status is required!")
+	@NotEmpty(message="Status is required")
 	private String status;
 	
 	private String picture;

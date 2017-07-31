@@ -20,7 +20,7 @@ public class AccountDAO {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Account> getItems() {
-		String sql = "select A.id, A.username, A.password, A.role, A.id_Employee, A.enabled, E.name, E.picture  from Account as A INNER JOIN Employee as E ON A.id_Employee= E.id";
+		String sql = "select A.id, A.username, A.password, A.role, A.id_Employee, A.enabled, E.name, E.picture  from Account as A LEFT JOIN Employee as E ON A.id_Employee= E.id";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Account.class));
 	}
 

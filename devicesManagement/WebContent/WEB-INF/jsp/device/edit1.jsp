@@ -36,6 +36,13 @@ function check() {
 function format_curency(a) {
     a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }  
+function checkID(x, id) {
+	if (x == '') {
+		document.getElementById(id).innerHTML = "Please input";
+	} else {
+		document.getElementById(id).innerHTML = "";
+	}
+}
 </script>
 <script type="text/javascript">
     function check(){
@@ -92,7 +99,7 @@ function format_curency(a) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2>Add Device</h2>
+                    <h2>Edit Device</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -110,7 +117,7 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="seri_number" value="${objDeviceEdit.seri_number }" disabled="disabled" type="text" class="form-control"/>
+                                                <input  name="seri_number" value="${objDeviceEdit.seri_number }" disabled="disabled" type="text" class="form-control"/>
                                             </div>                                            
                                             <span id="erSeri" style="color:red" class="help-block">
                                             </span>
@@ -139,7 +146,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="price" value="${objDeviceEdit.price }" onChange="format_curency(this);" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erPrice')"
+													onkeyup="checkID(this.value,'erPrice')" name="price" name="price" value="${objDeviceEdit.price }" onChange="format_curency(this);" type="text" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block" id="erPrice" style="color:red"></span>
                                         </div>
@@ -151,7 +159,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="warranty"  value="${objDeviceEdit.warranty }" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erWarranty')"
+													onkeyup="checkID(this.value,'erWarranty')" name="price" name="warranty"  value="${objDeviceEdit.warranty }" type="text" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block" id="erWarranty" style="color:red"></span>
                                         </div>

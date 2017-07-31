@@ -63,6 +63,12 @@ function format_curency(a) {
 			check = false;
 		} 
 		return check;
+	}function checkID(x, id) {
+		if (x == '') {
+			document.getElementById(id).innerHTML = "Please input";
+		} else {
+			document.getElementById(id).innerHTML = "";
+		}
 	}
 </script>
 
@@ -86,7 +92,7 @@ function format_curency(a) {
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
-							<div class="panel-body" id="body"><div class="table-responsive">
+							<div class="panel-body" id="body">
                                 <form onsubmit="return check()" name="frm" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -107,7 +113,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="name" value="${objItem.name }" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erName')"
+													onkeyup="checkID(this.value,'erName')" name="name" value="${objItem.name }" type="text" class="form-control"/>
                                             </div>                                            
                                             <span id="erName" style="color:red" class="help-block">
                                             </span>
@@ -118,7 +125,8 @@ function format_curency(a) {
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input name="made_in" value="${objItem.made_in }" type="text" class="form-control"/>
+                                                <input onfocus="checkID(this.value,'erMadein')"
+													onkeyup="checkID(this.value,'erMadein')"  name="made_in" value="${objItem.made_in }" type="text" class="form-control"/>
                                             </div>                                            
                                             <span id="erMadein" style="color:red" class="help-block">
                                             </span>
@@ -159,7 +167,7 @@ function format_curency(a) {
                                     <button type="submit" name="submit" class="btn btn-primary pull-right">Update</button>
                                 </div>                                        
                                 </form>                                
-                            </div></div></div>
+                            </div></div>
                         </div>
                          
                     </div>                                

@@ -40,7 +40,7 @@
 		
 		function checkID(x, id) {
 			if (x == '') {
-				document.getElementById(id).innerHTML = "Please input!";
+				document.getElementById(id).innerHTML = "Please input";
 			} else {
 				document.getElementById(id).innerHTML = "";
 			}
@@ -49,7 +49,6 @@
 		function check() {
 			
 			var idCat = document.frm.idCat.value;
-			alert(idCat);
 			
 			var check = true;
 			var id = document.frm.id.value;
@@ -60,33 +59,32 @@
 			var price = document.frm.price.value;
 			var warranty = document.frm.warranty.value;
 			var status = document.frm.status.value;
-			var idCat = document.frm.idCat.value;
 			var isnew = document.frm.isnew.value;
 
 			if (id == '') {
-				document.getElementById("erIdEquipment").innerHTML = "Please input!";
+				document.getElementById("erIdEquipment").innerHTML = "Please input";
 				check = false;
 			}
 			if (seri == '') {
-				document.getElementById("erSeri").innerHTML = "Please input!";
+				document.getElementById("erSeri").innerHTML = "Please input";
 				check = false;
 			}
 			if (name == '') {
-				document.getElementById("erName").innerHTML = "Please input!";
+				document.getElementById("erName").innerHTML = "Please input";
 				check = false;
 			}
 
 			if (madein == '') {
-				document.getElementById("erMadein").innerHTML = "Please input!";
+				document.getElementById("erMadein").innerHTML = "Please input";
 				check = false;
 			}
 
 			/* if (idAccount == -1) {
-				document.getElementById("erIdAccount").innerHTML = "Please choose it!";
+				document.getElementById("erIdAccount").innerHTML = "Please choose it";
 				check = false;
 			} */
 			if (price == '') {
-				document.getElementById("erPrice").innerHTML = "Please input!";
+				document.getElementById("erPrice").innerHTML = "Please input";
 				check = false;
 			} else {
 				for (var i = 0; i < price.length; i++) {
@@ -99,20 +97,20 @@
 			}
 
 			if (warranty == '') {
-				document.getElementById("erWarranty").innerHTML = "Please input!";
+				document.getElementById("erWarranty").innerHTML = "Please input";
 				check = false;
 			}
 
 			if (status == -1) {
-				document.getElementById("erStatus").innerHTML = "Please choose it!";
+				document.getElementById("erStatus").innerHTML = "Please choose it";
 				check = false;
 			}
 			if (idCat == -1) {
-				document.getElementById("erIdCat").innerHTML = "Please choose it!";
+				document.getElementById("erIdCat").innerHTML = "Please choose it";
 				check = false;
 			}
 			if (isnew == '') {
-				document.getElementById("erIsnew").innerHTML = "Please choose it!";
+				document.getElementById("erIsnew").innerHTML = "Please choose it";
 				check = false;
 			}
 			return check;
@@ -133,8 +131,7 @@
 	</div>
 	<div style="text-align: center">
 		<c:if test="${param['check'] eq 'err' }">
-			<div style="color: red; font-size: 20px; text-align: center">This
-				device exists!!</div>
+			<div style="color: red; font-size: 20px; text-align: center">This device exists!!</div>
 		</c:if>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -146,7 +143,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
 					<div class="panel-body" id="body">
-						<div class="table-responsive">
+						<!-- <div class="table-responsive"> -->
 							<form onsubmit="return check()" name="frm"
 								class="form-horizontal"
 								action="${pageContext.request.contextPath}/device/add"
@@ -182,7 +179,7 @@
 													type="text" class="form-control" />
 											</div>
 											<span id="erSeri" style="color: red" class="help-block">
-												<%-- <form:errors path="objItem.seri_number" style="color:red"></form:errors> --%>
+												 <form:errors path="objItem.seri_number" style="color:red"></form:errors>
 											</span>
 										</div>
 									</div>
@@ -197,7 +194,7 @@
 													type="text" class="form-control" />
 											</div>
 											<span id="erName" style="color: red" class="help-block">
-												<%-- <form:errors path="objItem.name" style="color:red"></form:errors> --%>
+												<form:errors path="objItem.name" style="color:red"></form:errors> 
 											</span>
 										</div>
 									</div>
@@ -261,7 +258,8 @@
 											<input type="radio" name="isnew" value="1"> New <input
 												type="radio" name="isnew" value="0"
 												style="margin-left: 30px"> Old <span id="erIsnew"
-												style="color: red" class="help-block"> <%-- <form:errors path="objItem.isnew" style="color:red"></form:errors> --%>
+												style="color: red" class="help-block"> 
+												<form:errors path="objItem.isnew" style="color:red"></form:errors>
 											</span>
 										</div>
 									</div>
@@ -279,20 +277,20 @@
 									<div class="form-group">
 										<label class="col-md-3 col-xs-12 control-label">Category</label>
 										<div class="col-md-6 col-xs-12">
-											<%-- <select name="idCat" class="form-control select">
+											 <select name="idCat" class="form-control select">
 												<option value="-1">--Choose category--</option>
 												<c:forEach items="${listCats }" var="objCat">
 													<option value="${objCat.id }">${objCat.name }</option>
 												</c:forEach>
-											</select> <span id="erIdCat" style="color: red" class="help-block"></span> --%>
+											</select> <span id="erIdCat" style="color: red" class="help-block"></span>
 											
-											<input type="text" onfocus="checkID(this.value,'erIdCat')"
+											<%-- <input type="text" onfocus="checkID(this.value,'erIdCat')"
 													onkeyup="checkID(this.value,'erIdCat')"  list="idCat" name="idCat" />
-											<datalist  id="idCat">
+											<datalist id="idCat">
 											  <c:forEach items="${listCats }" var="objCat">
 													<option value="${objCat.name }">
 												</c:forEach>
-											</datalist>
+											</datalist> --%>
 											
 											<span id="erIdCat" style="color: red" class="help-block"></span>
 											
@@ -315,7 +313,7 @@
 										class="btn btn-primary pull-right">Submit</button>
 								</div>
 							</form>
-						</div>
+						<!-- </div> -->
 					</div>
 				</div>
 			</div>

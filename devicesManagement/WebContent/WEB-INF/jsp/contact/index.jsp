@@ -72,7 +72,15 @@
 					</div>
 					<div class="panel-body" id="body">
 						<div class="table-responsive">
-							<table class="table datatable">
+						<script type="text/javascript">
+						$(document).ready(function() {
+						    $('#example').DataTable( {
+								destroy:true,
+						    	"order": [[ 0, "desc" ]]
+						    } );
+						} );
+						</script>
+							<table id="example" class="table datatable">
 								<thead>
 									<tr>
 										<th>ID</th>
