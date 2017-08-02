@@ -160,7 +160,7 @@ function checkID(x, id) {
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <input onfocus="checkID(this.value,'erWarranty')"
-													onkeyup="checkID(this.value,'erWarranty')" name="price" name="warranty"  value="${objDeviceEdit.warranty }" type="text" class="form-control"/>
+													onkeyup="checkID(this.value,'erWarranty')"  name="warranty"  value="${objDeviceEdit.warranty }" type="text" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block" id="erWarranty" style="color:red"></span>
                                         </div>

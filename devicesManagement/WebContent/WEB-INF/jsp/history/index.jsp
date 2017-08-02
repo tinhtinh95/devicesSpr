@@ -101,7 +101,7 @@
                                                           <a href="${pageContext.request.contextPath }/history/detail/${objItem.id}"
 											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-camera-retro fa-lg"></span></button></a>
                                                         <a href="${pageContext.request.contextPath }/history/del/${objItem.id}"
-											title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button></a>
+											title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want to delete?')"><span class="fa fa-times"></span></button></a>
                                                  </td>
                                             </tr>
 	                                     </c:forEach>       

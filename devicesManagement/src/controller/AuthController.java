@@ -86,6 +86,7 @@ public class AuthController {
 		   	        		+ " click here to try login again <a href=\"http://localhost:8081/devicesManagement/login\">http://localhost:8081/devicesManagement/login</a></body></html>",true);
 		        	 if(accountDAO.updatePass(new_pass,objE.getId())>0){
 		        		 System.out.println("success");
+		        		 System.out.println(new_pass);
 			        	// sends the e-mail
 			        	 mailSender.send(mime);
 			        	 return "redirect:/login?new_pass=success";

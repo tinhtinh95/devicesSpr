@@ -23,27 +23,55 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
 		<li><a href="${pageContext.request.contextPath }/account">Account</a></li>
-         <li class="active">Add New Account</li>
+		<li class="active">Add New Account</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
-		<h2>
-			 Add Account
-		</h2>
+		<h2>Add Account</h2>
+	</div>
+	<div style="text-align: center">
+		<c:if test="${param['check'] eq 'err' }">
+			<div style="color: red; font-size: 20px; text-align: center">username is exists!!</div>
+		</c:if>
 	</div>
 	<!-- END PAGE TITLE -->
+<script type="text/javascript">
 
+function checkID(x, id) {
+	if (x == '') {
+		document.getElementById(id).innerHTML = "Please input";
+	} else {
+		document.getElementById(id).innerHTML = "";
+	}
+}
+
+function check() {
+	var check = true;
+	var username = document.frm.username.value;
+	var pass= document.frm.password.value;
+
+	if (username == '') {
+		document.getElementById("erUsername").innerHTML = "Please input";
+		check = false;
+	}
+	if (pass == '') {
+		document.getElementById("erpass").innerHTML = "Please input";
+		check = false;
+	}
+	return check;
+}
+</script>
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
 
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form action="${pageContext.request.contextPath}/account/add"
+					<form onsubmit="return check()" name="frm" action="${pageContext.request.contextPath}/account/add"
 						class="form-horizontal" role="form" method="post">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -52,9 +80,11 @@
 									<div class="input-group">
 										<span class="input-group-addon"><span
 											class="fa fa-pencil"></span></span> <input type="text"
-											name="username" class="form-control" />
+											name="username" class="form-control" 
+											onfocus="checkID(this.value,'erUsername')"
+													onkeyup="checkID(this.value,'erUsername')" />
 									</div>
-									<span class="help-block">This is sample of text field</span>
+									<span id="erUsername" style="color: red" class="help-block"></span>
 								</div>
 							</div>
 							<div class="form-group">
@@ -62,18 +92,20 @@
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
 										<span class="input-group-addon"><span
-											class="fa fa-pencil"></span></span> <input type="password"
+											class="fa fa-pencil">
+											</span></span> <input onfocus="checkID(this.value,'erpass')"
+													onkeyup="checkID(this.value,'erpass')" type="password"
 											name="password" class="form-control" />
 									</div>
-									<span class="help-block">This is sample of text field</span>
+									<span id="erpass" style="color: red" class="help-block"></span>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label class="col-md-3 col-xs-12 control-label">Role</label>
 								<div class="col-md-6 col-xs-12">
 									<select class="form-control select" name="role">
-										<option >Admin</option>
+										<option>Admin</option>
 										<option>User</option>
 									</select> <span class="help-block">Select box example</span>
 								</div>

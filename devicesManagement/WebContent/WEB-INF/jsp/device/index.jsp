@@ -75,7 +75,17 @@
 								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
 								<c:set value="${param['seri']}" var="seri_number"> </c:set>
 								<c:if test="${idAccount ne null }">
-								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
+								<%-- <form name="form">
+								    <input type="hidden" name="idac" value="${idAccount }" />
+									<input type="hidden" name="seri" value="${seri_number }" />
+								</form> --%>
+								<c:redirect url="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}"/>
+								 <!--  <script type="text/javascript">
+								  var idac = document.form.idac.value;
+								  var seri = document.form.seri.value;
+								  return "window.location.replace(\"${pageContext.request.contextPath }/device/downloadPDF/\"++\"/\"+seri);"
+								  </script> -->
+								 <%-- <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3> --%>
 								</c:if>
 								</div>
 						</c:if>

@@ -144,7 +144,7 @@
 													</a> 
 															<a
 																href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
-																title="">
+																title="" onClick="return confirm('Do you want to delete?')">
 																<button class="btn btn-danger btn-rounded btn-sm">
 																	<span class="fa fa-times"></span>
 																</button>

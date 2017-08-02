@@ -196,7 +196,7 @@ public class DeviceController {
 		objItem.setPicture(objD.getPicture());
 		objItem.setMade_in(objD.getMade_in());
 
-		if (mainDAO.checkDevices(objItem.getId(), objItem.getSeri_number()) != null) {
+		if (mainDAO.getItem(objItem.getSeri_number()) != null) {
 			return "redirect:/device/detail/add/" + id + "?check=err";
 		}
 
@@ -241,6 +241,7 @@ public class DeviceController {
   
 	@RequestMapping(value = "detail/del/{seri_number}", method = RequestMethod.GET)
 	public String del1(@PathVariable("seri_number") String seri_number) {
+		System.out.println(seri_number);
 		Devices objD = mainDAO.getItem(seri_number);
 		String id = objD.getId();
 		System.out.println(id);
@@ -253,26 +254,30 @@ public class DeviceController {
 
 	@RequestMapping(value = "/change", method = RequestMethod.POST)
 	public void change(@PathParam("aidAccount") int aidAccount, @PathParam("aseri") String aseri, ModelMap modelMap,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response,HttpSession session,HttpServletRequest request  ) throws IOException {
 		System.out.println(aidAccount + "  " + aseri);
 		Devices objItem = mainDAO.getItem(aseri);
-		mainDAO.changeAccount(aseri, aidAccount); 
-		String selected = "";
-		String result = "";
-		String rs = "";
-		for (Account objAccount : accountDAO.getItems()) {
-			if (objAccount.getId() == objItem.getIdAccount()) {
-				selected = "selected='selected'";
-			} else {
-				selected = "";
+		if(mainDAO.changeAccount(aseri, aidAccount)>0){
+//			Account objLogin=(Account)session.getAttribute("objLogin");
+//			Account account=accountDAO.getItem(aidAccount);
+			String selected = "";
+			String result = "";
+			String rs = "";
+			for (Account objAccount : accountDAO.getItems()) {
+				if (objAccount.getId() == objItem.getIdAccount()) {
+					selected = "selected='selected'";
+				} else {
+					selected = "";
+				}
+				rs += "<option " + selected + " value=\"" + objAccount.getId() + "\">" + objAccount.getUsername()
+						+ "</option>";
 			}
-			rs += "<option " + selected + " value=\"" + objAccount.getId() + "\">" + objAccount.getUsername()
-					+ "</option>";
+			result = "<select onchange=\"return Change(" + aidAccount + ",'" + aseri
+					+ "')\" name=\"idAccount\" class=\"form-control select\">"
+					+  rs + "</select>" ;
+			response.getWriter().print(result);
+			//response.sendRedirect(request.getServletPath()+"/downloadPDF/"+aidAccount+"/"+aseri);
 		}
-		result = "<select onchange=\"return Change(" + aidAccount + ",'" + aseri
-				+ "')\" name=\"idAccount\" class=\"form-control select\">"
-				+  rs + "</select>" ;
-		response.getWriter().print(result);
 	}
 	
 	@RequestMapping(value = "/downloadPDF/{idAccount}/{seri_number}")

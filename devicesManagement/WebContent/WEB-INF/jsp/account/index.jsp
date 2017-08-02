@@ -85,7 +85,8 @@
 										<th>Role</th>
 										<th>Employee</th>
 										<th>Picture</th>
-										<th>Enabled</th>
+										<c:if test="${objLogin.role eq 'ADMIN' }">
+										<th>Enabled</th></c:if>
 										<th>Function</th>
 									</tr>
 								</thead>
@@ -100,7 +101,17 @@
 											<td><img height="55px" width="55px"
 												src="${pageContext.request.contextPath}/files/${objItem.picture }"
 												alt="" /></td>
-											<td id="ajaxpicture${objItem.id}"><c:choose>
+												
+												<%-- <c:choose> --%>
+												<c:if test="${objLogin.role eq 'ADMIN' }">
+												
+												<c:choose>
+												  
+													<c:when test="${objItem.role eq 'ADMIN' }">
+														<td></td>
+													</c:when>
+													<c:otherwise>
+														<td id="ajaxpicture${objItem.id}"><c:choose>
 													<c:when test="${objItem.enabled eq 1}">
 														<img
 															onclick="return getActive(${objItem.id },${objItem.enabled })"
@@ -116,13 +127,43 @@
 															alt="" />
 													</c:otherwise>
 												</c:choose></td>
+													</c:otherwise>
+												
+												</c:choose>
+												
+												</c:if>
+												
+												<%-- <c:otherwise>
+													<td>
+													<c:choose>
+													<c:when test="${objItem.enabled eq 1}">
+														<img onclick="alert('You dont have permission to change it')";
+															height="25px" width="25px"
+															src="${pageContext.request.contextPath}/templates/img/icons/en.png"
+															alt="" />
+													</c:when>
+													<c:otherwise>
+														<img onclick="alert('You dont have permission to change it')";
+															height="25px" width="25px"
+															src="${pageContext.request.contextPath}/templates/img/icons/un.png"
+															alt="" />
+													</c:otherwise>
+												</c:choose></td>
+												</c:otherwise>
+												</c:choose> --%>
+												
 											<c:choose>
-												<c:when test="${idLogin eq objItem.id }">
-													<td><a
+												<c:when test="${objLogin.role eq 'ADMIN'}">
+												    <c:choose>
+												    <c:when test="${objItem.role eq 'ADMIN' && objItem.id ne objLogin.id }">
+												    	<td><span class="label label-default">Disable</span></td>
+												    </c:when>
+												    	<c:otherwise>
+												    		<td><a
 														href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
 																class="btn btn-default btn-rounded btn-sm">
 																<span class="fa fa-pencil"></span>
-															</button></a> <c:if test="${ (objLogin.role eq 'ADMIN') }">
+															</button></a> <c:if test="${objLogin.id ne objItem.id }">
 															<a
 																href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
 																	class="btn btn-danger btn-rounded btn-sm"
@@ -130,20 +171,8 @@
 																	<span class="fa fa-times"></span>
 																</button></a>
 														</c:if></td>
-												</c:when>
-												<c:when test="${objLogin.role eq 'ADMIN'}">
-													<td><a
-														href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
-																class="btn btn-default btn-rounded btn-sm">
-																<span class="fa fa-pencil"></span>
-															</button></a> 
-															<a
-																href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
-																	class="btn btn-danger btn-rounded btn-sm"
-																	onClick="return confirm('Do you want delete?')">
-																	<span class="fa fa-times"></span>
-																</button></a>
-														</td>
+												    	</c:otherwise>
+												    </c:choose>
 												</c:when>
 												<c:otherwise>
 													<td><span class="label label-default">Disable</span></td>

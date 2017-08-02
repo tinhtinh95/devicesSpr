@@ -42,10 +42,10 @@
 
   function validate1() {
 	  $("#result").text("");
-	  var email = $("#email").val();
+	  var email = $("#email").val().trim();
 	  if (validateEmail(email)) {
-	    $("#result").text(email + " is valid");
-	    $("#result").css("color", "green");
+	    /* $("#result").text(email + " is valid");
+	    $("#result").css("color", "green"); */
 	  } else {
 		  if(email.length!=0){
 			  $("#result").text(email + " is not valid");
@@ -56,10 +56,10 @@
 	}
 	function validate() {
 	  $("#result").text("");
-	  var email = $("#email").val();
+	  var email = $("#email").val().trim();
 	  if (validateEmail(email)) {
-	    $("#result").text(email + " is valid");
-	    $("#result").css("color", "green");
+	   /*  $("#result").text(email + " is valid");
+	    $("#result").css("color", "green"); */
 	    return true;
 	  } else {
 		  if(email.length!=0){

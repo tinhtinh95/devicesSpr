@@ -60,7 +60,7 @@ public class AccountController {
 			return "account.add";
 		}
 		if (mainDAO.checkAccount(objItem.getUsername()) != null) {
-			return "redirect:/admin/cat/add?check=err";
+			return "redirect:/account/add?check=err";
 
 		}
 		if (mainDAO.addItem(objItem) > 0) {

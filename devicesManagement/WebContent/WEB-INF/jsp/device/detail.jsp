@@ -34,6 +34,7 @@ function Change(idAccount,seri) {
 			success:function(data){
 				$('#change-'+seri).html(data);
 				alert("You did change it");
+				window.location.replace("${pageContext.request.contextPath }/device/downloadPDF/"+idAccount+"/"+seri);
 			},
 			error:function(){
 				alert("Error");
@@ -100,7 +101,18 @@ function Change(idAccount,seri) {
 								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
 								<c:set value="${param['seri']}" var="seri_number"> </c:set>
 								<c:if test="${idAccount ne null }">
-								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
+								<form name="form">
+								    <input type="hidden" name="idac" value="${idAccount }" />
+									<input type="hidden" name="seri" value="${seri_number }" />
+								</form>
+								
+										<script type="text/javascript">
+										 var idac = document.form.idac.value;
+										  var seri = document.form.seri.value;
+											window.location.replace("${pageContext.request.contextPath }/device/downloadPDF/"+idac+"/"+seri);
+										</script>
+										<%-- <c:redirect url="http://www.google.com/search"></c:redirect>  --%>
+								 <%-- <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3> --%>
 								</c:if>
 								</div>
 						</c:if>
@@ -110,7 +122,34 @@ function Change(idAccount,seri) {
 								<c:set value="${param['idAC']}" var="idAccount"> </c:set>
 								<c:set value="${param['seri']}" var="seri_number"> </c:set>
 								<c:if test="${idAccount ne null }">
-								 <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3>
+								 <form name="form">
+								    <input type="hidden" name="idac" value="${idAccount }" />
+									<input type="hidden" name="seri" value="${seri_number }" />
+								</form> 
+								
+								<script type="text/javascript">
+								var idac = document.form.idac.value;
+								  var seri = document.form.seri.value;
+								$.ajax({
+									url: '',
+									type: 'Post',
+									cache: false,
+									data:{
+									},
+									success:function(data){
+										alert('1');
+										window.location.replace("${pageContext.request.contextPath }/device/downloadPDF/"+idac+"/"+seri); 
+									},
+									error:function(){
+										alert("Error");
+									}
+								});
+										/*  var idac = document.form.idac.value;
+										  var seri = document.form.seri.value;
+											window.location.replace("${pageContext.request.contextPath }/device/downloadPDF/"+idac+"/"+seri); */
+										</script> 
+								 <%-- <h3><a href="${pageContext.request.contextPath }/device/downloadPDF/${idAccount}/${seri_number}">Detail</a></h3> --%>
+								  <%--  <c:redirect url="https://www.tutorialspoint.com"/>  --%>
 								</c:if>
 								</div>
 						</c:if>
@@ -132,7 +171,7 @@ function Change(idAccount,seri) {
 							type="button" class="btn btn-info">Add</a>
 					</div></c:if> 
 					 --%>
-					<div class="panel-body" id="body"><div class="table-responsive">
+					<div class="panel-body" id="body"><!-- <div class="table-responsive"> -->
                                     <table id="example" class="table datatable" style="text-align:center">
                                         <thead>
                                             <tr>
@@ -216,7 +255,7 @@ function Change(idAccount,seri) {
                                             
                                         </tbody>
                                     </table></div>
-                                </div>
+                                <!-- </div> -->
                             </div>
                             <!-- END DEFAULT DATATABLE -->
 
