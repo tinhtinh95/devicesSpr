@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 31, 2017 at 12:04 PM
+-- Generation Time: Aug 04, 2017 at 03:24 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -43,10 +43,10 @@ CREATE TABLE `Account` (
 
 INSERT INTO `Account` (`id`, `username`, `password`, `role`, `id_Employee`, `enabled`) VALUES
 (0, 'ADMINISTRATOR', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', '', 1),
-(1, 'a', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'E01', 1),
-(2, 'b', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E02', 1),
-(4, 'Tinh', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E04', 1),
-(5, 'c', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin', 'E30', 1);
+(1, 'Tina', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'E01', 1),
+(2, 'Kevin', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E02', 0),
+(4, 'Quinto', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E33', 1),
+(5, 'Martin', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'E30', 1);
 
 -- --------------------------------------------------------
 
@@ -89,11 +89,11 @@ CREATE TABLE `Contact` (
 --
 
 INSERT INTO `Contact` (`id`, `id_Account`, `description`, `status`) VALUES
-(1, 1, 'My PC is slow. Can I change it?', 'resolved'),
+(1, 4, 'My PC is slow. Can I change it?', 'resolved'),
 (2, 2, 'My PC is slow. Can I change it?', 'in progress'),
-(3, 1, 'abcdef', 'in progress'),
-(4, 1, 'Monitor doesn\'t work ', 'new'),
-(5, 1, 'Hardware', 'new');
+(3, 4, 'abcdef', 'in progress'),
+(4, 4, 'Monitor doesn\'t work ', 'new'),
+(5, 4, 'Hardware', 'new');
 
 -- --------------------------------------------------------
 
@@ -121,17 +121,24 @@ CREATE TABLE `Devices` (
 --
 
 INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `date_start`) VALUES
-('a', 'a', 1, 3, 'a', 'a', '2', '6', 0, 'No use', '', '2017-07-31 03:49:54'),
+('a', 'a', 2, 3, 'a', 'a', '2', '6', 0, 'No use', '', '2017-08-01 06:04:04'),
 ('DV01', '1', -1, 1, 'RamKingston', 'Italy', '30', '3 years', 0, '-1', 'download (1).jpg', '2017-07-31 02:21:44'),
-('DV01', '123', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use ', 'download (1).jpg', '2017-07-17 03:53:55'),
-('DV01', '1234', 5, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'download (1).jpg', '2017-07-31 02:11:34'),
-('DV01', '12345', 1, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'download (1).jpg', '2017-07-17 03:53:55'),
-('HDD1', '#1524', 1, 1, 'HDD', 'Italy', '34', '3 years', 0, 'No use', 'hdd.jpg', '2017-07-31 03:36:37'),
+('DV01', '1234', 4, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'download (1).jpg', '2017-08-03 01:18:27'),
+('DV01', '12345', 4, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'download (1).jpg', '2017-08-02 13:20:13'),
+('DV01', 'ab', 4, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use', 'download (1).jpg', '2017-08-03 01:18:12'),
+('DV01', 'dw', 4, 1, 'RamKingston', 'Italy', '333', '3 years', 1, 'No use', 'download (1).jpg', '2017-08-03 01:17:03'),
+('DV01', 'dwu', 2, 1, 'RamKingston', 'Italy', '333', '3 years', 1, 'No use', 'download (1).jpg', '2017-08-02 10:01:16'),
+('DV01', 'fft', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use', 'download (1).jpg', '2017-08-03 01:17:53'),
+('DV01', 'kk', 4, 1, 'RamKingston', 'Italy', '', 'k', 1, 'In use', 'download (1).jpg', '2017-08-02 12:50:05'),
+('DV01', 'kkf', 2, 1, 'RamKingston', 'Italy', 'k', 'k', 1, 'In use', 'download (1).jpg', '2017-08-03 04:41:46'),
+('DV01', 'zx', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use', 'download (1).jpg', '2017-08-02 13:16:24'),
+('HDD1', '1524', 1, 1, 'HDD', 'Italy', '34', '3 years', 0, 'No use', 'hdd.jpg', '2017-08-03 01:17:37'),
 ('HDD1', 'd', 2, 1, 'HDD', 'Italy', '333', '3 months', 0, 'No use', 'hdd.jpg', '2017-07-31 04:05:39'),
 ('HDD1', 'RR02', 0, 1, 'HDD', 'Italy', '333', '3 years', 1, 'In use', 'hdd.jpg', '2017-07-31 04:04:06'),
 ('HDD1', 'RR0I', 2, 1, 'HDD', 'Italy', '333', '3 years', 1, 'No use', 'hdd.jpg', '2017-07-31 04:04:20'),
-('M01', '12', 1, 5, 'Monitor', 'VietNam', '30', '3 years', 1, 'No use', 'download.jpg', '2017-07-17 03:54:12'),
-('Mouse01', 'M011', 2, 4, 'Logitech MX Master Wireless Mouse', 'US', '10', '3 months', 1, 'In use', '26-608-016-01.jpg', '2017-07-26 06:04:32'),
+('M01', '112M', 2, 5, 'Monitor', 'VietNam', '333', '3 years', 1, 'In use', 'download.jpg', '2017-08-02 02:41:00'),
+('M01', '12', 4, 5, 'Monitor', 'VietNam', '30', '3 years', 1, 'No use', 'download.jpg', '2017-08-02 02:33:13'),
+('Mouse01', 'M011', 4, 4, 'Logitech MX Master Wireless Mouse', 'US', '10', '3 months', 1, 'In use', '26-608-016-01.jpg', '2017-08-02 09:28:04'),
 ('R01', 'R1_Kingston', 1, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30', '3 years', 0, 'No use ', 'download (2).jpg', '2017-07-17 03:54:41'),
 ('R01', 'R2_Kingston', 2, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30', '3 years', 1, 'In use ', 'download (2).jpg', '2017-07-17 03:55:03'),
 ('SSD1', 'S1', 1, 7, 'SSD', 'Hong Kong', '333', '3 years', 1, 'In use', 'ssd.jpg', '2017-07-31 03:25:19');
@@ -159,11 +166,11 @@ CREATE TABLE `Employee` (
 --
 
 INSERT INTO `Employee` (`id`, `name`, `birthday`, `address`, `phone`, `picture`, `id_Position`, `id_Team`, `email`) VALUES
-('E01', 'Quinto', '2017-06-27', 'DN', '01635266058', 'm3-3633413432259.png', '1', 'J01', 'tinhchocopie087@gmail.com'),
-('E02', 'Kevin', '2017-06-27', 'DN', '01635266058', 'm2-9949237658505.jpeg', '1', 'J01', 'kimnahee43@yahoo.com'),
-('E11', 'Riot', '2017-06-26', 'Hòa Khánh', '0123455689', 'preview-medium-17950975243593.png', '1', 'J01', 'nttinh995@gmail.com'),
-('E30', 'Thor', '2017-06-12', 'DN', '01635266058', '', '3', 'P01', ''),
-('E33', 'Tom', '2017-07-20', 'Ha Tinh', '01635266058', '18557049_1970800019822850_2976533477387153543_n-20338465264710.jpg', '2', 'P01', '');
+('E01', 'Nguyen Thi Tinh', '2017-06-27', 'DN', '01635266058', 'm3-3633413432259.png', '1', 'J01', 'tinhchocopie087@gmail.com'),
+('E02', 'Duong Gia Tuong', '2017-06-27', 'DN', '01635266058', 'SinhVienIT-Net---1(85)-441786949126556.jpg', '1', 'J01', 'kimnahee43@yahoo.com'),
+('E11', 'Dinh Huu Quan', '2017-06-26', 'Hòa Khánh', '0123455689', 'preview-medium-17950975243593.png', '1', 'J01', 'nttinh995@gmail.com'),
+('E30', 'Ngo Viet Thao', '2017-06-12', 'DN', '01635266058', 'm1-437647030767912.jpg', '1', 'J01', 'tinh.nguyen@enclave.vn'),
+('E33', 'Truong Khanh', '2017-07-20', 'Ha Tinh', '01635266058', 'attachment-437607356271274.jpg', '1', 'J01', 'tuongbkav@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -294,7 +301,7 @@ ALTER TABLE `Team`
 -- AUTO_INCREMENT for table `Account`
 --
 ALTER TABLE `Account`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `Category`
 --

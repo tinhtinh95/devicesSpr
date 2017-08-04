@@ -31,7 +31,7 @@ public class CreatePDF {
 		Document document = null;
  
 		try {
-			document = new Document(PageSize.A6);
+			document = new Document(PageSize.A5);
 			PdfWriter.getInstance(document, new FileOutputStream(file));
 			document.open();
  
@@ -72,7 +72,7 @@ public class CreatePDF {
 				+ simpleDateFormat.format(new Date()), TIME_ROMAN_SMALL));
 		document.add(preface);
  
-	}
+	} 
  
 	private static void creteEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {
@@ -84,7 +84,10 @@ public class CreatePDF {
 		Paragraph paragraph = new Paragraph();
 		creteEmptyLine(paragraph, 2);
 		document.add(paragraph);
-		PdfPTable table = new PdfPTable(4);
+		float[] widths = {0.15f, 0.15f, 0.5f, 0.2f};
+	      PdfPTable table = new PdfPTable(widths);
+		
+		//PdfPTable table = new PdfPTable(4);
  
 		PdfPCell c1 = new PdfPCell(new Phrase("Sender"));
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);

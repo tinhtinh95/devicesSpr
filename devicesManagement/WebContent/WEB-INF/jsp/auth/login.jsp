@@ -58,7 +58,7 @@
                 },
                 password:{
                   required: true,
-                  maxlength: 50,
+                  minlength: 6,
                 },
               },
               messages:{
@@ -68,7 +68,7 @@
                 },
                 password:{
                   required: "<span style='color:red'>Password is required</span>",
-                  maxlength: "<span style='color:red'>Password maxlength: 50!</span>",
+                  minlength: "<span style='color:red'>At least 6 letters</span>",
                 },
               },
             });

@@ -109,7 +109,7 @@ function checkID(x, id) {
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
-							<div class="panel-body" id="body"><div class="table-responsive">
+							<div class="panel-body" id="body">
                                 <form onsubmit="return check()" name="frm" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -160,7 +160,7 @@ function checkID(x, id) {
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <input onfocus="checkID(this.value,'erWarranty')"
-													onkeyup="checkID(this.value,'erWarranty')"  name="warranty"  value="${objDeviceEdit.warranty }" type="text" class="form-control"/>
+													onkeyup="checkID(this.value,'erWarranty')"  name="warranty" value="${objDeviceEdit.warranty }" type="text" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block" id="erWarranty" style="color:red"></span>
                                         </div>
@@ -214,7 +214,7 @@ function checkID(x, id) {
                                     <button type="reset" class="btn btn-default">Clear Form</button>
                                     <button type="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
-                                </form>      </div></div>                          
+                                </form>      </div>               
                             </div>
                         </div>
                          

@@ -48,8 +48,8 @@
 	    $("#result").css("color", "green"); */
 	  } else {
 		  if(email.length!=0){
-			  $("#result").text(email + " is not valid");
-			    $("#result").css("color", "red");
+			  /* $("#result").text(email + " is not valid");
+			    $("#result").css("color", "red"); */
 		  }
 	  }
 	  return false;
